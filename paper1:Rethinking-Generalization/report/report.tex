@@ -9,58 +9,44 @@
 \section{Problem statement and summary}
 
 \subsection{Setup}
-The training set is $S=\{(x_i,y_i)\}_{i=1}^n$, drawn i.i.d.\ from an unknown distribution $\mathcal D$. Each $x_i\in\R^d$ is an image and $y_i\in\{1,\dots,k\}$ is its class. For CIFAR-10 as used in the paper, $n=50{,}000$, $k=10$ and $d=28\cdot28\cdot3=2352$ after cropping. A network $f_\theta:\R^d\to\R^k$ with weights $\theta$ gives one score per class. With a loss $\ell$ (cross entropy for training, 0--1 loss when reporting errors), the training and test error are
+The training set $S=\{(x_i,y_i)\}_{i=1}^n$ is drawn i.i.d.\ from an unknown distribution $\mathcal D$, with images $x_i\in\R^d$ and labels $y_i\in\{1,\dots,k\}$. For CIFAR-10 in the paper, $n=50{,}000$, $k=10$ and $d=28\cdot28\cdot3=2352$ after cropping. A network $f_\theta:\R^d\to\R^k$ outputs one score per class. For a loss $\ell$ (cross entropy in training, 0--1 loss for reported errors), the training and test errors are
 \[
   \hat R_n(\theta)=\frac1n\sum_{i=1}^n \ell\big(f_\theta(x_i),y_i\big),\qquad
-  R(\theta)=\E_{(x,y)\sim\mathcal D}\,\ell\big(f_\theta(x),y\big).
+  R(\theta)=\E_{(x,y)\sim\mathcal D}\,\ell\big(f_\theta(x),y\big),
 \]
-$R$ is estimated on the 10{,}000 test images, and the generalization gap is $R(\theta)-\hat R_n(\theta)$.
+and the generalization gap is $R(\theta)-\hat R_n(\theta)$. $R$ is estimated on the 10{,}000 test images.
 
-The networks in the paper have up to 1.6 million weights for 50{,}000 images. They reach $\hat R_n=0$ and still have a small test error. The usual explanation bounds the gap by the capacity of the hypothesis class $\mathcal H$, for example through the Rademacher complexity
+The puzzle is that these networks have up to 1.6 million weights for 50{,}000 images, reach $\hat R_n=0$, and still have a small $R$. Classical theory bounds the gap by the capacity of the function class $\mathcal H$, for example its Rademacher complexity
 \[
   \hat{\mathfrak R}_n(\mathcal H)=\E_{\sigma}\Big[\sup_{h\in\mathcal H}\frac1n\sum_{i=1}^n\sigma_i\,h(x_i)\Big],
 \]
-where the $\sigma_i\in\{-1,+1\}$ are independent fair coin flips. With probability at least $1-\delta$, every $h\in\mathcal H$ satisfies $R(h)\le\hat R_n(h)+2\,\hat{\mathfrak R}_n(\mathcal H)+O\big(\sqrt{\log(1/\delta)/n}\big)$. $\hat{\mathfrak R}_n$ measures how well $\mathcal H$ can match random labels on the training inputs, and it never looks at the true labels. If $\mathcal H$ can fit every labeling, then $\hat{\mathfrak R}_n\approx1$ and the bound only says the gap is at most 2, which is useless for an error between 0 and 1.
+where the $\sigma_i\in\{-1,+1\}$ are independent fair coin flips. With probability at least $1-\delta$, every $h\in\mathcal H$ satisfies $R(h)\le\hat R_n(h)+2\,\hat{\mathfrak R}_n(\mathcal H)+O\big(\sqrt{\log(1/\delta)/n}\big)$. $\hat{\mathfrak R}_n$ measures how well $\mathcal H$ can fit random labels on the training inputs and never uses the true labels. If $\mathcal H$ can fit every labeling, $\hat{\mathfrak R}_n\approx1$ and the bound says nothing.
 
-\subsection{Method: the randomization test}
-The authors take standard networks with their usual training settings and train them on real CIFAR-10 and on versions where the information has been destroyed:
-\begin{itemize}
-  \item \emph{true labels};
-  \item \emph{partially corrupted labels}: with probability $p$, a label is replaced by a class drawn uniformly from all $k$ classes;
-  \item \emph{random labels}: the case $p=1$;
-  \item \emph{shuffled pixels}: one fixed random permutation of the pixels, applied to every train and test image;
-  \item \emph{random pixels}: a different random permutation for each image;
-  \item \emph{Gaussian}: each image replaced by Gaussian noise with the mean and variance of the data.
-\end{itemize}
-Nothing else is changed. Figure~1 of the paper shows the result: the small Inception network reaches zero training loss in every case (a), the time to fit grows only moderately with $p$ (b), and the test error goes from 13\% to 90\%, which is chance, as $p$ goes to 1 (c).
+\subsection{Method}
+The paper's tool is a randomization test. A standard network is trained with its usual hyper-parameters on CIFAR-10, and again on copies where the signal is destroyed: labels partially corrupted (each one replaced with probability $p$ by a class drawn uniformly from all $k$) or completely random ($p=1$), pixels shuffled by one fixed permutation (\emph{shuffled pixels}) or by a new permutation for each image (\emph{random pixels}), or images replaced by Gaussian noise with the same mean and variance.
 
-Since the network fits 50{,}000 random labels, $\hat{\mathfrak R}_n(\mathcal H)\approx1$ for this architecture. A bound that depends only on $\mathcal H$ gives the same answer for the true-label run (13\% test error) and the random-label run (90\%), so it cannot explain the first one. The same goes for VC dimension and for uniform stability, which also ignore the labels. Whatever explains generalization has to involve the data and the training algorithm.
+In every case the network reaches zero training error with only a moderate slowdown, while the test error rises to 90\%, which is chance (Figure~1 of the paper). So $\hat{\mathfrak R}_n(\mathcal H)\approx1$ for these networks. Any bound that depends only on $\mathcal H$ (Rademacher complexity, VC dimension) or ignores the labels (uniform stability) gives the same value for the true-label run with 13\% test error and the random-label run with 90\%, so it cannot explain why the first one generalizes. The explanation has to involve the data and the training algorithm.
 
-\subsection{How the rest of the paper uses this}
-\textbf{Explicit regularization is not the main reason (Section 3).} In Table~1 the Inception network gets 85.75\% test accuracy with no regularization and 89.05\% with random cropping and weight decay, and it still fits random labels with weight decay on. Regularizers help by a few points, but the network generalizes without them.
-
-\textbf{A small network can already fit any labels (Theorem~1).} A two-layer ReLU network with $2n+d$ weights can represent any function on $n$ points in $\R^d$. Pick $a\in\R^d$ so that the projections $z_i=\langle a,x_i\rangle$ are all distinct, sort them, and place thresholds $b_1<z_1<b_2<z_2<\dots<b_n<z_n$. The matrix $A_{ij}=\max(z_i-b_j,0)$ is lower triangular with a positive diagonal, so it is invertible and $w=A^{-1}y$ fits every target. For CIFAR-10 this is about 102{,}000 weights, far below 1.6 million. So it is no surprise that the networks \emph{can} represent random labels; the experiment shows that SGD actually \emph{finds} such a solution.
-
-\textbf{SGD prefers small-norm solutions in the linear case (Section 5).} Let $X\in\R^{n\times d}$ stack the inputs and train $f(x)=\langle w,x\rangle$ with SGD from $w_0=0$. Each step $w_{t+1}=w_t-\eta_t e_t x_{i_t}$, where $e_t$ is the prediction error on example $i_t$, adds a multiple of a data point, so $w=X^\top\alpha$ for some $\alpha\in\R^n$. If the solution fits the data, $Xw=y$ gives $XX^\top\alpha=y$, and when $XX^\top$ is invertible ($n\le d$, independent rows)
+Three more results support the argument. \emph{Explicit regularization is not the main reason}: Inception gets 85.75\% test accuracy with no regularizer and 89.05\% with cropping and weight decay, and it still fits random labels with weight decay on. \emph{Memorizing is cheap} (Theorem~1): a two-layer ReLU network with $2n+d$ weights, about 102{,}000 for CIFAR-10, can fit any labels on $n$ points. So the surprise is not that the networks \emph{can} represent random labels, but that SGD \emph{finds} such a solution. \emph{SGD has an implicit bias} in the linear case (Section~5). Run SGD on $f(x)=\langle w,x\rangle$ from $w_0=0$. Each update adds a multiple of some $x_i$, so $w=X^\top\alpha$ for some $\alpha\in\R^n$, where $X\in\R^{n\times d}$ stacks the inputs. If $w$ fits the data and $XX^\top$ is invertible (which needs $n\le d$),
 \[
-  w=X^\top(XX^\top)^{-1}y .
+  Xw=y \;\Rightarrow\; XX^\top\alpha=y \;\Rightarrow\; w=X^\top(XX^\top)^{-1}y,
 \]
-This is the minimum-norm solution of $Xw=y$: any other solution is $w+v$ with $Xv=0$, and $v\perp w$, so its norm is larger. SGD gets this preference for free from starting at zero. The paper reports 1.2\% test error on MNIST with this solution, but it also admits that the norm does not predict test error (wavelet preprocessing raises the norm from 220 to 390 and halves the error), and nothing like it is shown for deep networks.
+which is the minimum-norm solution of $Xw=y$. SGD picks the smallest-norm interpolant without being asked to. The authors admit this is only part of the story: on MNIST the norm does not predict the test error (wavelet preprocessing raises it from 220 to 390 but halves the error), and nothing like it is shown for deep networks.
 
 \subsection{Answers to the questions in the assignment}
-\textbf{How are random labels generated across epochs, and what would go wrong otherwise?} They are drawn once before training and then kept; the paper says the random labels are ``fixed and consistent across epochs''. If a new label were drawn every time an image is seen, the labels would be fresh noise each epoch. The best prediction would then be the uniform distribution, the loss would stay at $\log 10\approx2.30$, and there would be nothing to memorize, so the experiment would say nothing about capacity.
+\textbf{How are random labels generated across epochs, and what would go wrong otherwise?} They are drawn once before training and reused in every epoch (``fixed and consistent across epochs'' in the paper). If a new label were drawn each time an image is seen, the labels would be pure noise. The best prediction would then be the uniform distribution, the loss would stay at $\log 10\approx2.30$, and there would be nothing to memorize, so the experiment would say nothing about capacity.
 
-\textbf{With corruption probability $p$, what fraction of labels differs from the truth, and what test error should we expect at $p=1$?} A label changes only if it is selected (probability $p$) and the new class differs from the old one (probability $1-1/k$), so the changed fraction is $p(1-1/k)=0.9p$. In my runs the measured fractions were 0.180, 0.357, 0.540, 0.720 and 0.899 for $p=0.2,\dots,1.0$. At $p=1$ the labels are independent of the images, so any prediction on a test image is right with probability $1/k$ and the expected test error is $1-1/k=0.9$ (the red dashed line in Figure~\ref{fig:fig1}c).
+\textbf{With corruption probability $p$, what fraction of labels differs from the truth, and what test error should we expect at $p=1$?} A label changes when it is picked (probability $p$) and the new class differs from the old one (probability $1-1/k$), so the fraction is $p(1-1/k)=0.9p$. My runs had 0.179, 0.357, 0.540, 0.720 and 0.899 for $p=0.2,\dots,1.0$. At $p=1$ the labels are independent of the images, so the expected test error is $1-1/k=0.9$.
 
-\textbf{What optimizer, learning-rate schedule, preprocessing and regularization do the authors use?} From Appendix~A: pixels are divided by 255, center-cropped to $28\times28$, and each image is whitened on its own (subtract its mean, divide by its standard deviation). The optimizer is SGD with momentum 0.9. The initial learning rate is 0.1 for the small Inception and 0.01 for the small AlexNet and the MLPs, and it is multiplied by 0.95 after every epoch. The randomization experiments use no weight decay, dropout or data augmentation. The batch size is not given.
+\textbf{What optimizer, learning-rate schedule, preprocessing and regularization do the authors use?} From Appendix~A: pixels are divided by 255, center-cropped to $28\times28$, and each image is whitened separately (subtract its mean, divide by its standard deviation). The optimizer is SGD with momentum 0.9. The learning rate starts at 0.1 for Inception and 0.01 for AlexNet and the MLPs, and is multiplied by 0.95 after every epoch. The randomization experiments use no weight decay, dropout or data augmentation. The batch size is not given.
 
 \section{Reproduction of Figure 1}
 
 \subsection{LLM, conversation and code}
 \begin{itemize}
-  \item \textbf{LLM:} Claude (Fable and Opus) for the reproduction. I used Gemini only for background questions, such as what Rademacher complexity is. Toward the end the conversation was so long that the model no longer remembered its early parts.
-  \item \textbf{Shared conversation:} \url{https://chatgpt.com/share/e/6ad56563-6b04-83e9-9b36-5c16f745aded}
-  \item \textbf{Code:} \url{https://github.com/dhunganabibek/reading-and-reproducing-papers/tree/main/paper1:Rethinking-Generalization/code}. The notebook \code{reproduce\_fig1.ipynb} redraws the figure and prints every number in this report from the saved logs.
+  \item \textbf{LLM:} ChatGPT (GPT-5.6) for the main conversation. I also asked Claude and Gemini some side questions to understand concepts related to the paper, such as what Rademacher complexity is. Toward the end the main conversation was so long that the model no longer remembered its early parts.
+  \item \textbf{Shared conversation} (one conversation for all three papers):\newline \url{https://chatgpt.com/share/e/6ad56563-6b04-83e9-9b36-5c16f745aded}
+  \item \textbf{Code:} folder \repo{paper1:Rethinking-Generalization/code} of\newline \url{https://github.com/dhunganabibek/reading-and-reproducing-papers}. The notebook \code{reproduce\_fig1.ipynb} redraws the figure and prints every number in this report from the saved logs.
   \item I did not give the LLM any existing implementation before the Phase~3 snapshot, which I saved on 10 October 2026.
 \end{itemize}
 
@@ -73,7 +59,7 @@ This is the minimum-norm solution of $Xw=y$: any other solution is $w+v$ with $X
     Optimizer & SGD, momentum 0.9, learning rate 0.1 (Inception) or 0.01 (others), times 0.95 every epoch; no regularization\\
     Batch size & 128; not stated in the paper, but the spacing of the points in its Figure~1a matches (Section~\ref{sec:mismatch})\\
     Stopping & at 100\% training accuracy, or after 100 epochs\\
-    Corruption levels & $p=0,\,0.2,\,0.4,\,0.6,\,0.8,\,1.0$ for all three networks (the paper uses steps of 0.1)\\
+    Corruption & $p=0,\,0.2,\,0.4,\,0.6,\,0.8,\,1.0$ for all three networks (the paper uses steps of 0.1)\\
     Random pixels & all 2352 values of an image permuted; a second run keeps the color values of each pixel together\\
     Seeds & one run per setting\\
     \bottomrule
@@ -82,26 +68,21 @@ This is the minimum-norm solution of $Xw=y$: any other solution is $w+v$ with $X
   \label{tab:setup}
 \end{table}
 
-\textbf{Convergence time (Figure 1b).} The paper plots ``time to overfit'' relative to the true-label run but never defines it. I evaluate the accuracy on the whole training set after every epoch and count the SGD steps until it first reaches 99\%. I could not use 100\%: the MLP stops between 99.2\% and 99.97\% because by then the learning rate has decayed almost to zero. The paper's own Table~1 shows the same thing on random labels (99.34\% for this MLP, 99.82\% for AlexNet), so its Figure~1b cannot be using 100\% either.
+\textbf{Convergence time (Figure 1b).} The paper never defines ``time to overfit''. I use the number of SGD steps until the accuracy on the whole training set, checked after every epoch, first reaches 99\%. A 100\% threshold does not work, because the MLP stalls at 99.2--99.97\% once the learning rate has decayed. The paper's own Table~1 shows the same thing on random labels (99.34\% for this MLP, 99.82\% for AlexNet).
 
-\textbf{Reduced grid.} I ran all three architectures from the paper but only 6 of its 11 corruption levels, which kept the Inception sweep to about three GPU hours on my laptop.
+\textbf{Reduced grid.} I ran all three networks but only 6 of the paper's 11 corruption levels, which kept the Inception sweep to about three GPU hours on my laptop.
 
-\subsection{Original and reproduced figure}
-\begin{figure}[H]\centering
-  \includegraphics[width=0.86\textwidth]{figures/original_fig1.png}\\[6pt]
-  \includegraphics[width=0.74\textwidth]{figures/fig1_reproduced.png}
+\begin{figure}[t]\centering
+  \includegraphics[width=0.84\textwidth]{figures/original_fig1.png}\\[6pt]
+  \includegraphics[width=0.68\textwidth]{figures/fig1_reproduced.png}
   \caption{Top: Figure 1 of the paper. Bottom: my reproduction. Panel (c) uses the clean test labels and panel (c$'$) uses test labels corrupted with the same $p$ as the training labels (Section~\ref{sec:mismatch}).}
   \label{fig:fig1}
 \end{figure}
 
 \subsection{Results}
-\textbf{(a) Learning curves.} All five settings reach zero training loss with the same hyper-parameters, which is the main claim of the paper. The order also matches: true labels reach 100\% training accuracy first (6{,}630 steps), then shuffled pixels (9{,}360), Gaussian noise (10{,}920), random pixels (12{,}870) and random labels (22{,}230). On random labels the loss stays at $\log 10=2.30$ for about 10{,}000 steps and then drops to zero. I think this is because early on, the gradients from images with unrelated labels point in unrelated directions and mostly cancel; once the network starts to tell individual images apart, memorizing is fast.
+In panel (a) all five settings reach zero training loss with the same hyper-parameters, in the same order as in the paper: true labels reach 100\% training accuracy after 6{,}630 steps, then shuffled pixels (9{,}360), Gaussian noise (10{,}920), random pixels (12{,}870) and random labels (22{,}230). With random labels the loss stays at $\log 10$ for about 10{,}000 steps before it drops; my guess is that the gradients of unrelated examples mostly cancel until the network can tell individual images apart. In panel (b), label noise slows Inception down by at most 3.6 times, as in the paper. In panel (c), Inception's test error goes from 13\% to 90\% while its training error stays at zero. All numbers are in Table~\ref{tab:numbers}.
 
-\textbf{(b) Convergence slowdown.} More label noise needs more steps, but only a few times more: 3.6 times for Inception at $p=1$, the same as in the paper.
-
-\textbf{(c) Test error.} For Inception the test error goes from 13\% at $p=0$ to 90\% at $p=1$, while the training error is zero everywhere. Changing only the labels moves the generalization gap anywhere between 13 and 90 points. Table~\ref{tab:numbers} has all the numbers.
-
-\begin{table}[H]\centering\small
+\begin{table}[t]\centering\small
   \begin{tabular}{@{}l c cc cccc@{}}
     \toprule
     & & \multicolumn{2}{c}{time to overfit} & \multicolumn{4}{c}{test error}\\
@@ -132,79 +113,66 @@ This is the minimum-norm solution of $Xw=y$: any other solution is $w+v$ with $X
     & 1.0 & 1.96 & 2.96 & 0.898 & 0.896 & 0.900 & 0.905 \\
     \bottomrule
   \end{tabular}
-  \caption{The paper against my runs. The paper's values are read from the vector graphics of its PDF (\code{extract\_paper\_fig1.py}). Time to overfit is relative to $p=0$. ``Corrupted labels'' means test labels corrupted with the same $p$ as the training labels: ``formula'' is computed from the clean accuracy (Section~\ref{sec:mismatch}), ``measured'' is counted directly, which I only did for the runs made after I added that metric.}
+  \caption{The paper against my runs. The paper's values are read from the vector graphics of its PDF (\code{extract\_paper\_fig1.py}). Time to overfit is relative to $p=0$. ``Corrupted labels'' are test labels corrupted with the same $p$ as the training labels: ``formula'' is computed from the clean accuracy (Section~\ref{sec:mismatch}), and ``measured'' is counted directly, which I only did for runs made after I added that metric.}
   \label{tab:numbers}
 \end{table}
 
 \subsection{Phases 1--3: failures and corrections}
-In Phase~1 I gave the LLM the paper PDF and asked it for PyTorch code that reproduces Figure~1. Checking that code against the paper and running it (Phases 2 and 3), I found these problems.
-
-\textbf{Wrong parameter count.} The first small Inception had 1{,}651{,}114 parameters, 1{,}712 more than Table~1 of the paper. That is exactly the number of batch-norm channels: the authors' batch norm has no scale parameter, and their convolutions have no bias. With the scale fixed at 1 the count matched exactly, and so did the counts of the other networks. Matching the AlexNet count (1{,}387{,}786) also settled details the text leaves open, such as using two pooling steps down to a $7\times7$ map.
-
-\textbf{Convergence time.} The first definition was ``steps until 100\% training accuracy''. The MLP never got there, so panel (b) had no MLP curve. I switched to the 99\% threshold described above.
-
-\textbf{Parallel jobs.} At first I ran four training jobs on the laptop GPU at once. Two jobs had only been 1.2 times as fast as one, and with four the laptop crashed after 40 minutes. Since then every run goes one at a time and saves a checkpoint after each epoch.
-
-The Inception sweep was still running when I saved the Phase~3 snapshot, so I only noticed the mismatches in the next section after it. The random-pixels and speed checks are my own diagnostics; the explanation for panel (c) came from the authors' demo code in Phase~4.
+In Phase~1 I gave the LLM the paper PDF and asked for PyTorch code that reproduces Figure~1. Checking that code against the paper and running it (Phases 2 and 3) turned up these problems:
+\begin{itemize}
+  \item \textbf{Parameter count.} The first small Inception had 1{,}651{,}114 parameters, 1{,}712 more than Table~1. That is exactly the number of batch-norm channels: the authors' batch norm has no scale parameter and their convolutions have no bias. With that fixed, all network sizes match Table~1 exactly. Matching AlexNet's count also pinned down details the text leaves open, such as two pooling steps down to a $7\times7$ map.
+  \item \textbf{Convergence time.} The first version used 100\% training accuracy, which the MLP never reaches, so panel (b) had no MLP curve. I switched to 99\%.
+  \item \textbf{Parallel jobs.} Four jobs at once on the laptop GPU were barely faster than one and crashed the laptop, so runs now go one at a time with a checkpoint after every epoch.
+\end{itemize}
+The Inception sweep was still running when I saved the Phase~3 snapshot, so I found the mismatches below after it. The random-pixels and speed checks are my own; the explanation for panel (c) came from the authors' demo in Phase~4.
 
 \subsection{What did not match, and why}\label{sec:mismatch}
-\textbf{Test error in panel (c).} Against the clean test labels, my test error at intermediate $p$ is well below the paper's: 0.274 against 0.406 at $p=0.2$ for Inception, and 0.436 against 0.629 at $p=0.4$. The end points $p=0$ and $p=1$ agree. I first checked my own code. The fraction of changed labels is $0.9p$, the preprocessing follows Appendix~A, and longer training does not close the gap, because the MLP runs use all 100 epochs and are still below the paper.
-
-The explanation came from the first author's demo, which corrupts the test labels with the same $p$ as the training labels. Let $a$ be the accuracy on clean test labels. A corrupted test label is still the true class with probability $1-0.9p$ and is any particular wrong class with probability $p/10$, independently of the network. A prediction counts as correct if it was right and the label was kept, or if it was wrong and the label happened to move onto it:
+\textbf{Test error in panel (c).} On clean test labels my errors at intermediate $p$ are well below the paper's (Inception: 0.274 against 0.406 at $p=0.2$, 0.436 against 0.629 at $p=0.4$), while $p=0$ and $p=1$ agree. My code checked out: $0.9p$ of the labels change, the preprocessing follows Appendix~A, and longer training does not close the gap (the MLP uses all 100 epochs and is still lower). The answer was in the first author's demo, which corrupts the test labels with the same $p$. If $a$ is the clean test accuracy, a corrupted test label is still the true class with probability $1-0.9p$ and is any particular wrong class with probability $p/10$, independently of the network, so
 \[
   \text{accuracy on corrupted labels}=a\,(1-0.9p)+(1-a)\,\frac{p}{10}.
 \]
-For Inception at $p=0.4$, $a=0.564$ gives $0.564\cdot0.64+0.436\cdot0.04=0.378$, an error of 0.622, against 0.629 in the paper. Across all $p$ the largest difference for Inception is 0.007 (Table~\ref{tab:numbers}). For the MLP and AlexNet I also measured this directly in the training script, and the result agrees with the formula to within 0.005. So the paper's Figure~1c matches corrupted test labels, not clean ones. This matters for how the figure is read: against clean labels the test error grows roughly linearly in $p$, and the steeper curve in the paper comes from counting the label noise twice, once in training and once in testing.
+For Inception at $p=0.4$ this gives an error of 0.622 against the paper's 0.629, and the largest difference over all $p$ is 0.007. For the MLP and AlexNet I also measured it directly, and it agrees with the formula to within 0.005. So the paper's Figure~1c is consistent with corrupted test labels, not clean ones. This matters: on clean labels the test error grows roughly linearly in $p$, and the steeper curve in the paper comes from counting the label noise twice.
 
-\textbf{Random pixels in panel (a).} My first version permuted pixel positions but kept the three color values of each pixel together. That keeps the colors of the image, and color alone says something about the class: the loss falls from the start (2.01 in the first epoch, against 2.31 in the paper), fitting takes 18{,}330 steps, and test accuracy is still 37\%. Permuting all 2352 values, channels included, gives a first-epoch loss of 2.26, 12{,}870 steps and 14\% test accuracy. The paper does not say which one it does, but its curve matches the second, so that is the ``random pixels'' curve in my figure and the first version is the dashed curve.
+\textbf{Random pixels in panel (a).} My first version permuted pixel positions but kept the three color values of each pixel together. That keeps the colors of the image, which carry class information: the loss falls right away (2.01 in the first epoch against 2.31 in the paper) and the test accuracy is still 37\%. Permuting all 2352 values gives a first-epoch loss of 2.26 and 14\% test accuracy, which matches the paper's curve, so that is my ``random pixels'' curve and the first version is dashed.
 
-\textbf{Speed in panel (a).} In absolute steps my Inception is about 1.4 times slower than the paper's. The epoch loss drops below 0.1 after 4{,}290 steps on true labels (paper: 3{,}130) and 19{,}110 steps on random labels (paper: 13{,}690). The ratios to the true-label run agree, though: random labels take 4.5 times as long in my runs and 4.4 in the paper, Gaussian inputs 2.3 against 2.5, random pixels 2.7 against 2.6. I tested two explanations and both failed. The batch size is not the cause: the points in the paper's Figure~1a are 391 steps apart, exactly one epoch at batch size 128. The initialization is not it either: the authors used TensorFlow, so I reran the true-label run with TensorFlow's default (Glorot uniform), and the first-epoch loss was 1.31 instead of 1.33, while the paper has 0.84. I could not find the cause, and the authors' code is not public.
+\textbf{Speed in panel (a).} My Inception is about 1.4 times slower in absolute steps (epoch loss below 0.1 after 4{,}290 steps on true labels against 3{,}130 in the paper), but the ratios to the true-label run agree: 4.5 against 4.4 for random labels, 2.3 against 2.5 for Gaussian inputs, 2.7 against 2.6 for random pixels. The batch size is not the cause, since the points in the paper's Figure~1a are 391 steps apart, one epoch at batch size 128. Neither is the initialization: with TensorFlow's default (Glorot uniform) the first-epoch loss is 1.31 instead of 1.33, while the paper has 0.84. I could not find the cause.
 
-\textbf{Slowdown for AlexNet and the MLP in panel (b).} The ratio depends on the convergence criterion, which the paper does not give. With my 99\% threshold, Inception agrees with the paper (1.6 to 3.6 against 1.9 to 3.6). The MLP agrees at 95\% (2.15 at $p=1$ against 1.96) but not at 99\% (2.96). AlexNet does not agree at any threshold: 3.0 against 1.55. The difference is in the true-label run. The paper's AlexNet ratios are multiples of $1/31$, so its true-label run took 31 time units and its random-label run 48. If a unit is one epoch, as the spacing in panel (a) suggests, my AlexNet needs a similar 39 epochs on random labels but only 13 on true labels. The paper's AlexNet is also worse at $p=0$ than in its own Table~1 (30.1\% error in the figure, 23.9\% in the table; mine has 22.2\%). My guess is that the AlexNet in Figure~1 was not trained exactly as Appendix~A describes, and I cannot reproduce its curve.
+\textbf{Slowdown for AlexNet and the MLP in panel (b).} The ratio depends on the threshold. At 99\% Inception matches the paper, the MLP only matches at 95\% (2.15 against 1.96 at $p=1$), and AlexNet does not match at any threshold (3.0 against 1.55). The paper's AlexNet ratios are multiples of $1/31$, so its true-label run took 31 time units and its random-label run 48. If a unit is an epoch, my AlexNet needs a similar 39 epochs on random labels but only 13 on true labels. The paper's AlexNet also has 30.1\% test error at $p=0$ in Figure~1c but 23.9\% in its own Table~1 (mine has 22.2\%), so I suspect the AlexNet in Figure~1 was not trained exactly as Appendix~A describes.
 
 \subsection{Phase 4: comparison with the authors' code}
-The authors did not release the code for the paper. The first author's repository \repo{pluskid/fitting-random-labels} says so and offers a small PyTorch demo with a Wide ResNet and an MLP instead. I compared its protocol with my Phase~3 code. It does the same as mine in three places: labels are corrupted once with a fixed seed, using a uniform draw that can return the true class; the batch size is 128; and training accuracy is measured on the whole training set after each epoch.
+The authors never released the code for the paper. The first author's repository \repo{pluskid/fitting-random-labels} says so and offers a small PyTorch demo with a Wide ResNet and an MLP. Like my Phase~3 code, it corrupts the labels once with a fixed seed using a uniform draw that can return the true class, uses batch size 128, and measures training accuracy on the whole training set after every epoch. The main difference is that it also corrupts the test labels, which explained panel (c). It also uses a step learning-rate schedule and $32\times32$ inputs, where I kept the paper's Appendix~A; the paper's MLP parameter count only works out for a $28\times28$ input.
 
-The main difference is that the demo \textbf{also corrupts the test labels}, which explained panel (c). The demo also uses a step learning-rate schedule and $32\times32$ inputs; for both I kept the paper's Appendix~A. Its 512-unit MLP has 1{,}577{,}984 parameters because of the larger input, while the paper's 1{,}209{,}866 only works out for a $28\times28$ crop, which confirms the crop.
-
-Everything I changed after the Phase~3 snapshot:
-\begin{itemize}
-  \item a second test metric in \code{train.py} (accuracy on test labels corrupted with the same $p$) and panel (c$'$) in the figure, because of the demo; training itself is unchanged;
-  \item the second random-pixels version and the Glorot initialization option, for my own diagnostics;
-  \item checkpointing and resuming;
-  \item panel (a) drawn with one point per epoch, like the paper;
-  \item the script that reads the paper's plotted values from its PDF.
-\end{itemize}
+Changes after the Phase~3 snapshot: a second test metric in \code{train.py} (accuracy on corrupted test labels) and panel (c$'$), because of the demo, with training unchanged; the second random-pixels version and the Glorot option, for my own diagnostics; checkpointing; panel (a) with one point per epoch, like the paper; and the script that reads the paper's values from its PDF. At the end I also tidied the code for readability. The saved results come from the version before the clean-up; a short CPU run gives identical logs with both versions.
 
 \section{Critical review}
 
 \subsection{My review}
-\textbf{Summary.} The paper trains standard image classifiers on labels and inputs that carry no information and shows that they still reach zero training error without changing any settings. From this it argues that capacity measures that ignore the data cannot explain why the same networks generalize on real data. A small expressivity theorem and an analysis of SGD on linear models support the argument.
+The paper shows that standard image classifiers reach zero training error on random labels and random inputs without changing any settings, and concludes that capacity measures that ignore the data cannot explain why the same networks generalize on real data.
 
-\textbf{Strengths.} The experiment is simple and cheap, and anyone can check it; I reproduced every qualitative claim of Figure~1 on a laptop. It asks one clear question and answers it. The conclusion is useful mostly as a negative result, because it tells theory where not to look: any explanation has to depend on the data and on the optimizer. The theorem and the linear-model section are modest, and the authors present them that way.
+\textbf{Strengths.} The experiment is simple, cheap and easy to check (I reproduced every qualitative claim of Figure~1 on a laptop), and it answers one clear question. Its main value is as a negative result: it tells theory where not to look. The theorem and the linear-model section are modest, and the paper presents them that way.
 
 \textbf{Weaknesses.}
 \begin{itemize}
-  \item The surprise is partly rhetorical. A model with about 30 weights per training image can memorize the training set, and so can a nearest-neighbor rule. The new fact is narrower: the \emph{same recipe} that generalizes on real data also memorizes noise.
-  \item ``Only a small constant factor'' undersells the slowdown. It is 3.6 times for Inception, and on random labels the loss does not move for the first 10{,}000 steps. That plateau shows the optimizer treats noise differently from signal, and the paper does not follow it up.
-  \item Early stopping is dismissed too quickly. With 40\% corrupted labels, my Inception had 26\% test error after 8 epochs and 44\% once it had memorized the training set. The network learns the real pattern first and the noise later, so early stopping does work as a regularizer under label noise. The paper only looks at early stopping on clean data.
-  \item Section~5 does not carry over to deep networks. The minimum-norm result needs a linear model started at zero, and the section itself shows that the norm does not predict test error.
+  \item The surprise is partly rhetorical. With about 30 weights per training image, memorizing the training set is expected, and a nearest-neighbor rule does it too. The new fact is narrower: the \emph{same recipe} that generalizes on real data also memorizes noise.
+  \item ``A small constant factor'' undersells the slowdown: 3.6 times for Inception, and with random labels the loss does not move for 10{,}000 steps. That plateau shows SGD treats noise differently from signal, which the paper does not follow up.
+  \item Early stopping is dismissed too quickly. With 40\% label noise my Inception had 26\% test error after 8 epochs and 44\% after memorizing the training set. The network learns the real pattern first, so early stopping does help under label noise; the paper only tests it on clean data.
+  \item Section~5 does not carry over to deep networks: the minimum-norm result needs a linear model started at zero, and the section itself shows that the norm does not predict test error.
   \item There are no error bars. Every curve in Figure~1 is a single run, and so are mine.
 \end{itemize}
 
 \textbf{Possible errors and unclear points.}
 \begin{itemize}
-  \item Figure~1c is labeled ``test error'' but matches test labels that were corrupted like the training labels (Section~\ref{sec:mismatch}). The paper does not say this, and it changes the shape of the curve.
-  \item ``Time to overfit'' in Figure~1b is never defined. The plotted ratios are multiples of $1/10$, $1/31$ and $1/28$ for the three networks, so it seems to be counted in whole units, probably epochs.
-  \item AlexNet has 30.1\% test error at $p=0$ in Figure~1c but 23.9\% in Table~1 (76.07\% accuracy without regularization).
-  \item ``Random labels'' and ``random pixels'' are not fully specified. For the labels this was only settled in the OpenReview discussion.
+  \item Figure~1c is labeled ``test error'' but matches test labels corrupted like the training labels (Section~\ref{sec:mismatch}). The paper does not say this, and it changes the shape of the curve.
+  \item ``Time to overfit'' is never defined. The plotted ratios are multiples of $1/10$, $1/31$ and $1/28$ for the three networks, so it seems to be counted in whole units, probably epochs.
+  \item AlexNet has 30.1\% test error at $p=0$ in Figure~1c but 23.9\% in Table~1.
+  \item ``Random labels'' and ``random pixels'' are not fully specified; the labels were only cleared up in the OpenReview discussion.
 \end{itemize}
 
 \subsection{Comparison with the OpenReview reviews}
-The three reviewers gave 10, 9 and 10, and the paper was accepted as an oral. The program committee called it ``groundbreaking'' and the evaluation ``a model of thoroughness''. I number the reviewers as the authors do in their reply. Reviewer~3 valued the paper for raising a good question even without answering it. Reviewer~2 agreed with all the conclusions and only asked the authors to state that the random labels come from the same label set. Reviewer~1 gave a 10 but was the most reserved: most results are ``intuitive'', and the authors ``do not draw a conclusion or offer a strong insight''. Reviewer~1 also asked why two networks with the same number of parameters generalize differently.
+The reviewers gave 10, 9 and 10, and the paper was accepted as an oral; the program committee called it ``groundbreaking''. Numbering the reviewers as the authors do in their reply: Reviewer~3 liked that the paper raises a good question even without answering it, and Reviewer~2 agreed with all the conclusions and only asked the authors to state that random labels come from the same label set. Reviewer~1 also gave a 10 but was more reserved, calling most results ``intuitive'', saying the authors ``do not draw a conclusion or offer a strong insight'', and asking why two networks with the same number of parameters generalize differently.
 
-The public comments were much harsher and closer to my own review. Thomas Dietterich wrote that the results are ``completely unsurprising'' (replace ``neural net'' with ``decision tree''), that training time ``nearly tripled'' on random labels, and that early stopping has always been the real control of complexity. Another commenter pointed out that the paper never says which ``traditional approaches'' predict otherwise, and an anonymous commenter argued that the behavior in Section~5 comes from the zero initialization, not from SGD.
+The public comments were harsher and closer to my view. Thomas Dietterich called the results ``completely unsurprising'' (replace ``neural net'' with ``decision tree''), noted that training time ``nearly tripled'' on random labels, and said early stopping has always been the real control of complexity. An anonymous commenter argued that the behavior in Section~5 comes from the zero initialization, not from SGD.
 
-My review shares three points with these comments: the surprise is overstated, the slowdown is not small, and Section~5 does not transfer. I also agree with Reviewer~1 that the paper diagnoses the problem but does not explain it. Two of my points do not appear anywhere in the discussion: the corrupted test labels behind Figure~1c, which I only found by reproducing it, and the measured benefit of early stopping under label noise. Unlike the harshest critics, I think that showing memorization with unchanged hyper-parameters on standard networks, and spelling out what it means for capacity-based bounds, was worth publishing. I would have accepted the paper, but with a score below 10.
+So my review shares three points with these comments: the surprise is overstated, the slowdown is not small, and Section~5 does not transfer. I also agree with Reviewer~1 that the paper diagnoses the problem without explaining it. Two of my points do not come up anywhere: the corrupted test labels behind Figure~1c, which I only found by reproducing it, and the measured benefit of early stopping under label noise. Unlike the harshest critics, I think that showing memorization with unchanged hyper-parameters on standard networks, and spelling out what that means for capacity-based bounds, was worth publishing. I would have accepted the paper, but with a score below 10.
 
 \end{document}
