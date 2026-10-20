@@ -1,0 +1,1 @@
+Phase-3 code snapshot taken 2026-10-10 15:34 before consulting any existing implementation.

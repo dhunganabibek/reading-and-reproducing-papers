@@ -1,0 +1,26 @@
+# Downloaded data and model weights; keep JSON results and report figures.
+datasets/
+**/code/data/
+*.pt
+*.pt.tmp
+*.pth
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+*.ckpt
+*.ckpt.tmp
+.ipynb_checkpoints/
+# LaTeX build files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.bbl
+*.blg
