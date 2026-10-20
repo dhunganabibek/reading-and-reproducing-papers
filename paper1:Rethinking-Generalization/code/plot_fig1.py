@@ -51,7 +51,7 @@ def corruption_sweep(runs, arch, threshold):
         acc = run["test_acc"][-1]
         rows.append({
             "p": p,
-            "steps": steps_to(run, threshold) or run["epoch"][-1] * run["steps_per_epoch"],
+            "steps": steps_to(run, threshold),
             "train_acc": run["train_acc"][-1],
             "test_err": 1 - acc,
             "test_err_noisy_expected": noisy_test_err(acc, p),
@@ -59,8 +59,9 @@ def corruption_sweep(runs, arch, threshold):
             "steps_by_threshold": {str(t): steps_to(run, t) for t in (0.95, 0.99, 0.999, 1.0)},
         })
     rows.sort(key=lambda r: r["p"])
+    baseline = next((r["steps"] for r in rows if r["p"] == 0), None)
     for r in rows:
-        r["time_ratio"] = r["steps"] / rows[0]["steps"]
+        r["time_ratio"] = r["steps"] / baseline if r["steps"] is not None and baseline else None
     return rows
 
 
@@ -103,7 +104,7 @@ def main():
             continue
         ps = [r["p"] for r in rows]
         style = dict(label=label, marker=marker, color=color, lw=2)
-        ax_b.plot(ps, [r["time_ratio"] for r in rows], **style)
+        ax_b.plot(ps, [r["time_ratio"] if r["time_ratio"] is not None else np.nan for r in rows], **style)
         ax_c.plot(ps, [r["test_err"] for r in rows], **style)
         ax_c2.plot(ps, [r["test_err_noisy_expected"] for r in rows], **style)
         summary[arch] = rows
@@ -135,7 +136,9 @@ def main():
         for r in rows:
             measured = r["test_err_noisy_measured"]
             measured = "  n/a" if measured is None else f"{measured:.3f}"
-            print(f"  p={r['p']:.1f}  steps={r['steps']:6d}  ratio={r['time_ratio']:.2f}  "
+            steps = str(r["steps"]) if r["steps"] is not None else "not reached"
+            ratio = f"{r['time_ratio']:.2f}" if r["time_ratio"] is not None else "n/a"
+            print(f"  p={r['p']:.1f}  steps={steps:>6s}  ratio={ratio}  "
                   f"test err={r['test_err']:.3f}  corrupted labels: formula={r['test_err_noisy_expected']:.3f} "
                   f"measured={measured}")
     print("saved", args.out)

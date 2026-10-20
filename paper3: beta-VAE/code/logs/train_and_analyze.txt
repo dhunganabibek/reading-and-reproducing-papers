@@ -1,0 +1,302 @@
+device=mps N=737280 steps/epoch=2880 models=[(1.0, 0), (4.0, 0), (16.0, 0)]
+[beta=1 seed=0] ep   1 recon 156.23 KL 13.02 loss 169.26 KL/dim [2.87, 0.12, 0.31, 3.04, 0.21, 2.76, 0.03, 0.38, 0.37, 2.94] (62s)
+[beta=4 seed=0] ep   1 recon 177.46 KL 8.48 loss 211.39 KL/dim [0.04, 0.03, 0.05, 0.1, 0.09, 0.06, 2.18, 2.69, 1.93, 1.31] (62s)
+[beta=16 seed=0] ep   1 recon 321.80 KL 2.82 loss 366.86 KL/dim [0.01, 2.72, 0.02, 0.02, 0.01, 0.0, 0.01, 0.01, 0.01, 0.02] (62s)
+[beta=1 seed=0] ep   2 recon 92.87 KL 12.88 loss 105.75 KL/dim [3.16, 0.0, 0.01, 3.37, 0.01, 3.11, 0.0, 0.03, 0.02, 3.17] (61s)
+[beta=4 seed=0] ep   2 recon 104.53 KL 9.47 loss 142.41 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.62, 2.93, 2.27, 1.64] (61s)
+[beta=16 seed=0] ep   2 recon 239.20 KL 3.62 loss 297.17 KL/dim [0.0, 3.15, 0.0, 0.04, 0.0, 0.0, 0.01, 0.0, 0.01, 0.4] (61s)
+[beta=1 seed=0] ep   3 recon 89.58 KL 12.97 loss 102.55 KL/dim [3.2, 0.0, 0.0, 3.4, 0.0, 3.14, 0.0, 0.01, 0.01, 3.2] (62s)
+[beta=4 seed=0] ep   3 recon 99.20 KL 9.64 loss 137.77 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.69, 3.01, 2.34, 1.6] (62s)
+[beta=16 seed=0] ep   3 recon 191.83 KL 4.50 loss 263.81 KL/dim [0.0, 3.22, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.28] (62s)
+[beta=1 seed=0] ep   4 recon 88.25 KL 13.02 loss 101.27 KL/dim [3.22, 0.0, 0.0, 3.42, 0.0, 3.15, 0.0, 0.0, 0.0, 3.22] (62s)
+[beta=4 seed=0] ep   4 recon 96.90 KL 9.70 loss 135.69 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.74, 3.05, 2.36, 1.55] (62s)
+[beta=16 seed=0] ep   4 recon 174.05 KL 4.81 loss 251.03 KL/dim [0.0, 3.29, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.52] (62s)
+[beta=1 seed=0] ep   5 recon 87.25 KL 13.08 loss 100.33 KL/dim [3.22, 0.0, 0.0, 3.42, 0.0, 3.16, 0.0, 0.03, 0.01, 3.23] (61s)
+[beta=4 seed=0] ep   5 recon 95.61 KL 9.71 loss 134.47 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.76, 3.07, 2.38, 1.5] (61s)
+[beta=16 seed=0] ep   5 recon 164.63 KL 4.99 loss 244.44 KL/dim [0.0, 3.34, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.65] (61s)
+[beta=1 seed=0] ep   6 recon 80.07 KL 14.21 loss 94.28 KL/dim [3.23, 0.0, 0.0, 3.43, 0.01, 3.17, 0.01, 1.1, 0.03, 3.23] (61s)
+[beta=4 seed=0] ep   6 recon 94.79 KL 9.71 loss 133.65 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.78, 3.09, 2.39, 1.46] (61s)
+[beta=16 seed=0] ep   6 recon 160.09 KL 5.07 loss 241.29 KL/dim [0.0, 3.36, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.71] (61s)
+[beta=1 seed=0] ep   7 recon 74.67 KL 14.74 loss 89.41 KL/dim [3.25, 0.0, 0.0, 3.46, 0.0, 3.19, 0.0, 1.56, 0.0, 3.26] (61s)
+[beta=4 seed=0] ep   7 recon 94.15 KL 9.72 loss 133.03 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.79, 3.11, 2.39, 1.43] (61s)
+[beta=16 seed=0] ep   7 recon 157.28 KL 5.13 loss 239.30 KL/dim [0.0, 3.38, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.75] (61s)
+[beta=1 seed=0] ep   8 recon 72.77 KL 14.88 loss 87.65 KL/dim [3.27, 0.0, 0.0, 3.48, 0.0, 3.21, 0.0, 1.64, 0.0, 3.28] (61s)
+[beta=4 seed=0] ep   8 recon 93.59 KL 9.72 loss 132.49 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.8, 3.12, 2.4, 1.4] (61s)
+[beta=16 seed=0] ep   8 recon 155.23 KL 5.17 loss 237.90 KL/dim [0.0, 3.39, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.77] (61s)
+[beta=1 seed=0] ep   9 recon 71.37 KL 14.99 loss 86.35 KL/dim [3.28, 0.0, 0.0, 3.49, 0.0, 3.22, 0.0, 1.69, 0.0, 3.29] (61s)
+[beta=4 seed=0] ep   9 recon 93.08 KL 9.73 loss 132.02 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.81, 3.13, 2.4, 1.39] (61s)
+[beta=16 seed=0] ep   9 recon 153.81 KL 5.20 loss 236.97 KL/dim [0.0, 3.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.8] (61s)
+[beta=1 seed=0] ep  10 recon 70.08 KL 15.07 loss 85.15 KL/dim [3.29, 0.0, 0.0, 3.5, 0.0, 3.23, 0.0, 1.73, 0.0, 3.3] (61s)
+[beta=4 seed=0] ep  10 recon 92.57 KL 9.74 loss 131.55 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.82, 3.14, 2.4, 1.39] (61s)
+[beta=16 seed=0] ep  10 recon 152.50 KL 5.22 loss 236.07 KL/dim [0.0, 3.41, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.81] (61s)
+[beta=1 seed=0] ep  11 recon 68.79 KL 15.14 loss 83.93 KL/dim [3.31, 0.0, 0.0, 3.51, 0.0, 3.24, 0.0, 1.77, 0.0, 3.31] (61s)
+[beta=4 seed=0] ep  11 recon 92.07 KL 9.76 loss 131.10 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.83, 3.14, 2.4, 1.38] (61s)
+[beta=16 seed=0] ep  11 recon 151.69 KL 5.25 loss 235.62 KL/dim [0.0, 3.41, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.83] (61s)
+[beta=1 seed=0] ep  12 recon 67.42 KL 15.22 loss 82.64 KL/dim [3.32, 0.0, 0.0, 3.52, 0.0, 3.25, 0.0, 1.82, 0.0, 3.32] (61s)
+[beta=4 seed=0] ep  12 recon 91.55 KL 9.78 loss 130.66 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.84, 3.15, 2.4, 1.38] (61s)
+[beta=16 seed=0] ep  12 recon 150.57 KL 5.27 loss 234.96 KL/dim [0.0, 3.42, 0.0, 0.01, 0.0, 0.0, 0.0, 0.0, 0.0, 1.84] (61s)
+[beta=1 seed=0] ep  13 recon 65.99 KL 15.29 loss 81.29 KL/dim [3.33, 0.0, 0.0, 3.52, 0.0, 3.25, 0.0, 1.86, 0.0, 3.32] (61s)
+[beta=4 seed=0] ep  13 recon 91.03 KL 9.79 loss 130.20 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.85, 3.15, 2.4, 1.39] (61s)
+[beta=16 seed=0] ep  13 recon 149.32 KL 5.32 loss 234.36 KL/dim [0.0, 3.42, 0.0, 0.02, 0.0, 0.01, 0.01, 0.0, 0.01, 1.85] (61s)
+[beta=1 seed=0] ep  14 recon 64.58 KL 15.36 loss 79.94 KL/dim [3.34, 0.0, 0.0, 3.53, 0.0, 3.25, 0.0, 1.9, 0.0, 3.33] (61s)
+[beta=4 seed=0] ep  14 recon 90.48 KL 9.82 loss 129.74 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.85, 3.16, 2.4, 1.4] (61s)
+[beta=16 seed=0] ep  14 recon 148.00 KL 5.35 loss 233.58 KL/dim [0.0, 3.42, 0.0, 0.04, 0.0, 0.01, 0.01, 0.0, 0.01, 1.85] (61s)
+[beta=1 seed=0] ep  15 recon 63.26 KL 15.44 loss 78.70 KL/dim [3.35, 0.0, 0.0, 3.54, 0.0, 3.26, 0.0, 1.94, 0.0, 3.34] (61s)
+[beta=4 seed=0] ep  15 recon 89.92 KL 9.84 loss 129.29 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.86, 3.17, 2.4, 1.41] (61s)
+[beta=16 seed=0] ep  15 recon 146.46 KL 5.39 loss 232.77 KL/dim [0.0, 3.43, 0.0, 0.09, 0.0, 0.01, 0.01, 0.0, 0.0, 1.86] (61s)
+[beta=1 seed=0] ep  16 recon 62.01 KL 15.52 loss 77.52 KL/dim [3.37, 0.0, 0.0, 3.55, 0.0, 3.27, 0.0, 1.98, 0.0, 3.35] (61s)
+[beta=4 seed=0] ep  16 recon 89.37 KL 9.86 loss 128.83 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.86, 3.17, 2.4, 1.42] (61s)
+[beta=16 seed=0] ep  16 recon 144.20 KL 5.47 loss 231.65 KL/dim [0.0, 3.43, 0.0, 0.18, 0.0, 0.0, 0.0, 0.0, 0.0, 1.85] (61s)
+[beta=1 seed=0] ep  17 recon 60.83 KL 15.59 loss 76.41 KL/dim [3.38, 0.0, 0.0, 3.56, 0.0, 3.27, 0.0, 2.01, 0.0, 3.36] (61s)
+[beta=4 seed=0] ep  17 recon 88.82 KL 9.89 loss 128.38 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.87, 3.18, 2.4, 1.43] (61s)
+[beta=16 seed=0] ep  17 recon 141.87 KL 5.54 loss 230.52 KL/dim [0.0, 3.43, 0.0, 0.26, 0.0, 0.0, 0.0, 0.0, 0.0, 1.84] (61s)
+[beta=1 seed=0] ep  18 recon 59.72 KL 15.66 loss 75.38 KL/dim [3.39, 0.0, 0.0, 3.57, 0.0, 3.28, 0.0, 2.04, 0.0, 3.37] (61s)
+[beta=4 seed=0] ep  18 recon 88.27 KL 9.92 loss 127.93 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.88, 3.19, 2.4, 1.44] (61s)
+[beta=16 seed=0] ep  18 recon 139.37 KL 5.62 loss 229.34 KL/dim [0.0, 3.43, 0.0, 0.35, 0.0, 0.0, 0.0, 0.0, 0.0, 1.84] (61s)
+[beta=1 seed=0] ep  19 recon 58.67 KL 15.73 loss 74.39 KL/dim [3.41, 0.0, 0.0, 3.58, 0.0, 3.29, 0.0, 2.07, 0.0, 3.38] (61s)
+[beta=4 seed=0] ep  19 recon 87.70 KL 9.94 loss 127.47 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.89, 3.19, 2.4, 1.46] (61s)
+[beta=16 seed=0] ep  19 recon 137.57 KL 5.69 loss 228.66 KL/dim [0.0, 3.43, 0.0, 0.43, 0.0, 0.0, 0.0, 0.0, 0.0, 1.83] (61s)
+[beta=1 seed=0] ep  20 recon 57.70 KL 15.79 loss 73.49 KL/dim [3.42, 0.0, 0.0, 3.59, 0.0, 3.3, 0.0, 2.1, 0.0, 3.39] (61s)
+[beta=4 seed=0] ep  20 recon 87.12 KL 9.98 loss 127.03 KL/dim [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.89, 3.2, 2.41, 1.47] (61s)
+[beta=16 seed=0] ep  20 recon 135.42 KL 5.76 loss 227.59 KL/dim [0.0, 3.44, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 1.82] (61s)
+[beta=1 seed=0] ep  21 recon 56.78 KL 15.86 loss 72.63 KL/dim [3.43, 0.0, 0.0, 3.59, 0.0, 3.3, 0.0, 2.12, 0.0, 3.39] (61s)
+[beta=4 seed=0] ep  21 recon 86.50 KL 10.01 loss 126.55 KL/dim [0.0, 0.0, 0.01, 0.0, 0.0, 0.0, 2.9, 3.2, 2.41, 1.48] (61s)
+[beta=16 seed=0] ep  21 recon 134.07 KL 5.81 loss 227.00 KL/dim [0.0, 3.44, 0.0, 0.54, 0.0, 0.0, 0.0, 0.0, 0.0, 1.82] (61s)
+[beta=1 seed=0] ep  22 recon 55.92 KL 15.92 loss 71.83 KL/dim [3.44, 0.0, 0.0, 3.6, 0.0, 3.31, 0.0, 2.15, 0.0, 3.41] (61s)
+[beta=4 seed=0] ep  22 recon 85.61 KL 10.08 loss 125.93 KL/dim [0.01, 0.0, 0.04, 0.01, 0.01, 0.0, 2.9, 3.21, 2.41, 1.49] (61s)
+[beta=16 seed=0] ep  22 recon 133.16 KL 5.84 loss 226.56 KL/dim [0.0, 3.45, 0.0, 0.56, 0.0, 0.0, 0.0, 0.0, 0.0, 1.82] (61s)
+[beta=1 seed=0] ep  23 recon 55.11 KL 15.97 loss 71.08 KL/dim [3.45, 0.0, 0.0, 3.61, 0.0, 3.32, 0.0, 2.17, 0.0, 3.41] (61s)
+[beta=4 seed=0] ep  23 recon 83.80 KL 10.25 loss 124.79 KL/dim [0.01, 0.0, 0.18, 0.01, 0.02, 0.0, 2.91, 3.22, 2.41, 1.48] (61s)
+[beta=16 seed=0] ep  23 recon 132.56 KL 5.86 loss 226.26 KL/dim [0.0, 3.45, 0.0, 0.57, 0.0, 0.0, 0.0, 0.0, 0.0, 1.83] (61s)
+[beta=1 seed=0] ep  24 recon 54.35 KL 16.03 loss 70.38 KL/dim [3.46, 0.0, 0.0, 3.62, 0.0, 3.33, 0.0, 2.19, 0.0, 3.42] (61s)
+[beta=4 seed=0] ep  24 recon 80.86 KL 10.50 loss 122.85 KL/dim [0.0, 0.0, 0.47, 0.01, 0.01, 0.0, 2.92, 3.23, 2.41, 1.45] (61s)
+[beta=16 seed=0] ep  24 recon 132.02 KL 5.87 loss 225.96 KL/dim [0.0, 3.46, 0.0, 0.58, 0.0, 0.0, 0.0, 0.0, 0.0, 1.83] (61s)
+[beta=1 seed=0] ep  25 recon 53.64 KL 16.08 loss 69.72 KL/dim [3.47, 0.0, 0.0, 3.62, 0.0, 3.34, 0.0, 2.21, 0.0, 3.43] (61s)
+[beta=4 seed=0] ep  25 recon 78.29 KL 10.68 loss 121.03 KL/dim [0.0, 0.0, 0.67, 0.0, 0.0, 0.0, 2.94, 3.24, 2.42, 1.42] (61s)
+[beta=16 seed=0] ep  25 recon 131.66 KL 5.88 loss 225.71 KL/dim [0.0, 3.46, 0.0, 0.59, 0.0, 0.0, 0.0, 0.0, 0.0, 1.83] (61s)
+[beta=1 seed=0] ep  26 recon 52.96 KL 16.13 loss 69.09 KL/dim [3.48, 0.0, 0.0, 3.63, 0.0, 3.34, 0.0, 2.23, 0.0, 3.44] (61s)
+[beta=4 seed=0] ep  26 recon 76.50 KL 10.81 loss 119.73 KL/dim [0.0, 0.0, 0.78, 0.0, 0.0, 0.0, 2.95, 3.25, 2.42, 1.41] (61s)
+[beta=16 seed=0] ep  26 recon 131.46 KL 5.89 loss 225.69 KL/dim [0.0, 3.46, 0.0, 0.6, 0.0, 0.0, 0.0, 0.0, 0.0, 1.83] (61s)
+[beta=1 seed=0] ep  27 recon 52.33 KL 16.18 loss 68.51 KL/dim [3.49, 0.0, 0.0, 3.64, 0.0, 3.35, 0.0, 2.25, 0.0, 3.45] (61s)
+[beta=4 seed=0] ep  27 recon 75.21 KL 10.88 loss 118.74 KL/dim [0.0, 0.0, 0.83, 0.0, 0.0, 0.0, 2.96, 3.26, 2.43, 1.41] (61s)
+[beta=16 seed=0] ep  27 recon 131.19 KL 5.90 loss 225.57 KL/dim [0.0, 3.46, 0.0, 0.6, 0.0, 0.0, 0.0, 0.0, 0.0, 1.83] (61s)
+[beta=1 seed=0] ep  28 recon 51.73 KL 16.23 loss 67.96 KL/dim [3.5, 0.0, 0.0, 3.64, 0.0, 3.36, 0.0, 2.27, 0.0, 3.45] (61s)
+[beta=4 seed=0] ep  28 recon 74.20 KL 10.93 loss 117.93 KL/dim [0.0, 0.0, 0.86, 0.0, 0.0, 0.0, 2.97, 3.27, 2.43, 1.41] (61s)
+[beta=16 seed=0] ep  28 recon 130.98 KL 5.90 loss 225.44 KL/dim [0.0, 3.46, 0.0, 0.61, 0.0, 0.0, 0.0, 0.0, 0.0, 1.83] (61s)
+[beta=1 seed=0] ep  29 recon 51.15 KL 16.28 loss 67.43 KL/dim [3.51, 0.0, 0.0, 3.65, 0.0, 3.36, 0.0, 2.29, 0.0, 3.46] (61s)
+[beta=4 seed=0] ep  29 recon 73.33 KL 10.98 loss 117.25 KL/dim [0.0, 0.0, 0.88, 0.0, 0.0, 0.0, 2.98, 3.27, 2.43, 1.41] (61s)
+[beta=16 seed=0] ep  29 recon 130.71 KL 5.91 loss 225.26 KL/dim [0.0, 3.47, 0.0, 0.61, 0.0, 0.0, 0.0, 0.0, 0.0, 1.83] (61s)
+[beta=1 seed=0] ep  30 recon 50.60 KL 16.31 loss 66.92 KL/dim [3.51, 0.0, 0.0, 3.65, 0.0, 3.37, 0.0, 2.3, 0.0, 3.47] (61s)
+[beta=4 seed=0] ep  30 recon 72.54 KL 11.03 loss 116.66 KL/dim [0.0, 0.0, 0.91, 0.0, 0.0, 0.0, 2.99, 3.28, 2.44, 1.42] (61s)
+[beta=16 seed=0] ep  30 recon 130.42 KL 5.92 loss 225.08 KL/dim [0.0, 3.47, 0.0, 0.62, 0.0, 0.0, 0.0, 0.0, 0.0, 1.83] (61s)
+
+beta=4 seed=0: 5 informative latents, total KL 11.06 nats, reconstruction at z=mu: 62.9 nats and 24.8 wrong pixels per image
+  latent  var    KL   | shape scale rot|shape  posX  posY  pos(x,y)
+  z8     0.002 3.28  | 0.00  0.00   0.00     0.82  0.13   0.96
+  z7     0.005 2.99  | 0.00  0.02   0.00     0.06  0.69   0.86
+  z9     0.009 2.44  | 0.07  0.30   0.00     0.18  0.18   0.53
+  z10    0.091 1.43  | 0.00  0.00   0.28     0.01  0.13   0.26
+  z3     0.184 0.92  | 0.01  0.00   0.50     0.00  0.00   0.01
+  mean over latents of the largest single-factor fraction: 0.52 (x and y separate), 0.63 (position as one factor)
+
+beta=1 seed=0: 5 informative latents, total KL 16.36 nats, reconstruction at z=mu: 47.6 nats and 17.7 wrong pixels per image
+  latent  var    KL   | shape scale rot|shape  posX  posY  pos(x,y)
+  z4     0.001 3.67  | 0.01  0.03   0.00     0.30  0.38   0.85
+  z10    0.001 3.48  | 0.01  0.01   0.05     0.11  0.18   0.77
+  z1     0.001 3.52  | 0.00  0.00   0.01     0.39  0.27   0.82
+  z6     0.002 3.38  | 0.01  0.02   0.03     0.35  0.34   0.79
+  z8     0.012 2.31  | 0.00  0.00   0.05     0.00  0.00   0.02
+  mean over latents of the largest single-factor fraction: 0.27 (x and y separate), 0.65 (position as one factor)
+saved figures/fig7ab_reproduced.png
+
+beta=16 seed=0: 3 informative latents, total KL 5.92 nats, reconstruction at z=mu: 108.6 nats and 46.2 wrong pixels per image
+  latent  var    KL   | shape scale rot|shape  posX  posY  pos(x,y)
+  z2     0.003 3.48  | 0.00  0.00   0.00     0.78  0.05   0.96
+  z10    0.036 1.83  | 0.02  0.12   0.00     0.27  0.03   0.40
+  z4     0.306 0.61  | 0.00  0.21   0.00     0.28  0.06   0.41
+  mean over latents of the largest single-factor fraction: 0.44 (x and y separate), 0.59 (position as one factor)
+saved figures/fig7_beta16.png
+device=mps N=737280 steps/epoch=2880 models=[(1.0, 1), (4.0, 1), (1.0, 2), (4.0, 2)]
+[beta=1 seed=1] ep   1 recon 154.69 KL 12.63 loss 167.31 KL/dim [0.12, 2.43, 3.82, 0.13, 3.07, 0.06, 0.81, 0.02, 0.07, 2.09] (80s)
+[beta=4 seed=1] ep   1 recon 176.07 KL 8.10 loss 208.47 KL/dim [0.01, 0.05, 2.6, 2.17, 0.01, 2.37, 0.02, 0.04, 0.0, 0.84] (80s)
+[beta=1 seed=2] ep   1 recon 164.60 KL 13.64 loss 178.25 KL/dim [0.04, 1.5, 0.52, 3.0, 0.05, 0.37, 1.29, 3.44, 0.04, 3.39] (80s)
+[beta=4 seed=2] ep   1 recon 190.15 KL 8.22 loss 223.01 KL/dim [1.46, 0.04, 0.11, 0.01, 0.11, 1.82, 0.03, 0.11, 2.05, 2.47] (80s)
+[beta=1 seed=1] ep   2 recon 92.85 KL 12.94 loss 105.78 KL/dim [0.0, 3.0, 3.67, 0.0, 3.45, 0.0, 0.14, 0.0, 0.0, 2.65] (80s)
+[beta=4 seed=1] ep   2 recon 104.17 KL 9.09 loss 140.55 KL/dim [0.0, 0.0, 2.86, 2.44, 0.0, 2.9, 0.0, 0.0, 0.0, 0.89] (80s)
+[beta=1 seed=2] ep   2 recon 105.50 KL 11.11 loss 116.61 KL/dim [0.0, 0.31, 0.01, 3.29, 0.0, 0.01, 0.04, 3.63, 0.01, 3.82] (80s)
+[beta=4 seed=2] ep   2 recon 107.61 KL 9.12 loss 144.11 KL/dim [1.95, 0.0, 0.0, 0.0, 0.0, 1.99, 0.0, 0.0, 2.37, 2.81] (80s)
+[beta=1 seed=1] ep   3 recon 89.28 KL 12.97 loss 102.25 KL/dim [0.0, 3.04, 3.69, 0.0, 3.5, 0.0, 0.02, 0.0, 0.0, 2.7] (81s)
+[beta=4 seed=1] ep   3 recon 98.07 KL 9.39 loss 135.62 KL/dim [0.0, 0.0, 2.92, 2.44, 0.0, 3.01, 0.0, 0.0, 0.0, 1.01] (81s)
+[beta=1 seed=2] ep   3 recon 103.37 KL 10.81 loss 114.18 KL/dim [0.0, 0.02, 0.0, 3.28, 0.0, 0.0, 0.01, 3.66, 0.0, 3.82] (81s)
+[beta=4 seed=2] ep   3 recon 100.67 KL 9.39 loss 138.21 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 2.01, 0.0, 0.0, 2.5, 2.88] (81s)
+[beta=1 seed=1] ep   4 recon 87.84 KL 13.01 loss 100.84 KL/dim [0.0, 3.06, 3.7, 0.0, 3.52, 0.0, 0.01, 0.0, 0.0, 2.7] (81s)
+[beta=4 seed=1] ep   4 recon 96.08 KL 9.45 loss 133.89 KL/dim [0.0, 0.0, 2.94, 2.44, 0.0, 3.07, 0.0, 0.0, 0.0, 0.99] (81s)
+[beta=1 seed=2] ep   4 recon 102.56 KL 10.78 loss 113.35 KL/dim [0.0, 0.01, 0.0, 3.26, 0.0, 0.0, 0.0, 3.67, 0.0, 3.83] (81s)
+[beta=4 seed=2] ep   4 recon 97.88 KL 9.49 loss 135.85 KL/dim [2.01, 0.0, 0.0, 0.0, 0.0, 2.01, 0.0, 0.0, 2.56, 2.92] (81s)
+[beta=1 seed=1] ep   5 recon 86.74 KL 13.08 loss 99.81 KL/dim [0.0, 3.08, 3.71, 0.0, 3.54, 0.0, 0.04, 0.0, 0.0, 2.69] (81s)
+[beta=4 seed=1] ep   5 recon 95.00 KL 9.47 loss 132.87 KL/dim [0.0, 0.0, 2.95, 2.44, 0.0, 3.1, 0.0, 0.0, 0.0, 0.96] (81s)
+[beta=1 seed=2] ep   5 recon 102.08 KL 10.78 loss 112.86 KL/dim [0.0, 0.01, 0.0, 3.25, 0.0, 0.0, 0.0, 3.68, 0.0, 3.83] (81s)
+[beta=4 seed=2] ep   5 recon 96.44 KL 9.54 loss 134.60 KL/dim [2.01, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.58, 2.95] (81s)
+[beta=1 seed=1] ep   6 recon 79.36 KL 14.22 loss 93.58 KL/dim [0.0, 3.1, 3.72, 0.0, 3.55, 0.0, 1.12, 0.0, 0.0, 2.7] (82s)
+[beta=4 seed=1] ep   6 recon 94.25 KL 9.48 loss 132.18 KL/dim [0.0, 0.0, 2.96, 2.44, 0.0, 3.13, 0.0, 0.0, 0.0, 0.94] (82s)
+[beta=1 seed=2] ep   6 recon 100.36 KL 11.07 loss 111.43 KL/dim [0.0, 0.23, 0.01, 3.24, 0.02, 0.01, 0.03, 3.69, 0.0, 3.84] (82s)
+[beta=4 seed=2] ep   6 recon 95.52 KL 9.57 loss 133.79 KL/dim [2.01, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.59, 2.97] (82s)
+[beta=1 seed=1] ep   7 recon 73.62 KL 14.79 loss 88.41 KL/dim [0.0, 3.13, 3.75, 0.0, 3.58, 0.0, 1.58, 0.0, 0.0, 2.73] (81s)
+[beta=4 seed=1] ep   7 recon 93.61 KL 9.49 loss 131.58 KL/dim [0.0, 0.0, 2.97, 2.44, 0.0, 3.15, 0.0, 0.0, 0.0, 0.93] (81s)
+[beta=1 seed=2] ep   7 recon 90.58 KL 12.38 loss 102.96 KL/dim [0.0, 1.51, 0.01, 3.24, 0.01, 0.01, 0.03, 3.72, 0.0, 3.85] (81s)
+[beta=4 seed=2] ep   7 recon 94.87 KL 9.58 loss 133.20 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.6, 2.98] (81s)
+[beta=1 seed=1] ep   8 recon 71.38 KL 14.94 loss 86.32 KL/dim [0.0, 3.16, 3.77, 0.0, 3.6, 0.0, 1.65, 0.0, 0.0, 2.74] (81s)
+[beta=4 seed=1] ep   8 recon 93.02 KL 9.51 loss 131.05 KL/dim [0.0, 0.0, 2.97, 2.44, 0.0, 3.16, 0.0, 0.0, 0.0, 0.94] (81s)
+[beta=1 seed=2] ep   8 recon 88.34 KL 12.52 loss 100.85 KL/dim [0.0, 1.63, 0.0, 3.25, 0.0, 0.0, 0.0, 3.75, 0.0, 3.87] (81s)
+[beta=4 seed=2] ep   8 recon 94.35 KL 9.59 loss 132.72 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 1.99, 0.0, 0.0, 2.61, 2.99] (81s)
+[beta=1 seed=1] ep   9 recon 69.64 KL 15.04 loss 84.68 KL/dim [0.0, 3.18, 3.79, 0.0, 3.62, 0.0, 1.7, 0.0, 0.0, 2.74] (82s)
+[beta=4 seed=1] ep   9 recon 92.39 KL 9.53 loss 130.53 KL/dim [0.0, 0.0, 2.97, 2.44, 0.0, 3.17, 0.0, 0.0, 0.0, 0.95] (82s)
+[beta=1 seed=2] ep   9 recon 87.52 KL 12.57 loss 100.10 KL/dim [0.0, 1.66, 0.0, 3.25, 0.0, 0.0, 0.0, 3.77, 0.0, 3.88] (82s)
+[beta=4 seed=2] ep   9 recon 93.94 KL 9.60 loss 132.34 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 1.99, 0.0, 0.0, 2.61, 3.0] (82s)
+[beta=1 seed=1] ep  10 recon 68.02 KL 15.13 loss 83.15 KL/dim [0.0, 3.19, 3.8, 0.0, 3.64, 0.0, 1.75, 0.0, 0.0, 2.74] (81s)
+[beta=4 seed=1] ep  10 recon 91.70 KL 9.57 loss 129.98 KL/dim [0.0, 0.0, 2.97, 2.44, 0.0, 3.18, 0.0, 0.0, 0.0, 0.98] (81s)
+[beta=1 seed=2] ep  10 recon 86.98 KL 12.61 loss 99.59 KL/dim [0.0, 1.69, 0.0, 3.24, 0.0, 0.0, 0.0, 3.78, 0.0, 3.89] (81s)
+[beta=4 seed=2] ep  10 recon 93.56 KL 9.61 loss 131.99 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 1.99, 0.0, 0.0, 2.62, 3.0] (81s)
+[beta=1 seed=1] ep  11 recon 66.45 KL 15.22 loss 81.67 KL/dim [0.0, 3.2, 3.82, 0.0, 3.65, 0.0, 1.8, 0.0, 0.0, 2.75] (81s)
+[beta=4 seed=1] ep  11 recon 90.92 KL 9.61 loss 129.37 KL/dim [0.0, 0.0, 2.98, 2.44, 0.0, 3.19, 0.0, 0.0, 0.0, 1.01] (81s)
+[beta=1 seed=2] ep  11 recon 86.54 KL 12.64 loss 99.19 KL/dim [0.0, 1.71, 0.0, 3.24, 0.0, 0.0, 0.0, 3.8, 0.0, 3.9] (81s)
+[beta=4 seed=2] ep  11 recon 93.23 KL 9.62 loss 131.70 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 1.98, 0.0, 0.0, 2.62, 3.01] (81s)
+[beta=1 seed=1] ep  12 recon 64.82 KL 15.31 loss 80.14 KL/dim [0.0, 3.21, 3.83, 0.0, 3.67, 0.0, 1.84, 0.0, 0.0, 2.75] (81s)
+[beta=4 seed=1] ep  12 recon 90.03 KL 9.67 loss 128.69 KL/dim [0.0, 0.0, 2.98, 2.44, 0.0, 3.19, 0.0, 0.0, 0.0, 1.05] (81s)
+[beta=1 seed=2] ep  12 recon 86.14 KL 12.67 loss 98.80 KL/dim [0.0, 1.72, 0.0, 3.23, 0.0, 0.0, 0.0, 3.8, 0.0, 3.9] (81s)
+[beta=4 seed=2] ep  12 recon 92.91 KL 9.62 loss 131.39 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 1.98, 0.0, 0.0, 2.62, 3.02] (81s)
+[beta=1 seed=1] ep  13 recon 63.13 KL 15.41 loss 78.54 KL/dim [0.0, 3.23, 3.84, 0.0, 3.68, 0.0, 1.89, 0.0, 0.0, 2.76] (81s)
+[beta=4 seed=1] ep  13 recon 89.05 KL 9.73 loss 127.96 KL/dim [0.0, 0.0, 2.98, 2.44, 0.0, 3.2, 0.0, 0.0, 0.0, 1.1] (81s)
+[beta=1 seed=2] ep  13 recon 85.70 KL 12.70 loss 98.40 KL/dim [0.0, 1.75, 0.0, 3.23, 0.0, 0.0, 0.0, 3.81, 0.0, 3.91] (81s)
+[beta=4 seed=2] ep  13 recon 92.59 KL 9.63 loss 131.11 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 1.98, 0.0, 0.0, 2.62, 3.02] (81s)
+[beta=1 seed=1] ep  14 recon 61.51 KL 15.51 loss 77.02 KL/dim [0.0, 3.24, 3.85, 0.0, 3.69, 0.0, 1.94, 0.0, 0.0, 2.77] (81s)
+[beta=4 seed=1] ep  14 recon 88.07 KL 9.78 loss 127.20 KL/dim [0.0, 0.0, 2.99, 2.44, 0.0, 3.2, 0.0, 0.0, 0.0, 1.15] (81s)
+[beta=1 seed=2] ep  14 recon 85.20 KL 12.74 loss 97.94 KL/dim [0.0, 1.78, 0.0, 3.22, 0.0, 0.0, 0.0, 3.82, 0.0, 3.91] (81s)
+[beta=4 seed=2] ep  14 recon 92.26 KL 9.64 loss 130.83 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 1.99, 0.0, 0.0, 2.63, 3.03] (81s)
+[beta=1 seed=1] ep  15 recon 59.98 KL 15.61 loss 75.59 KL/dim [0.0, 3.26, 3.87, 0.0, 3.71, 0.0, 1.99, 0.0, 0.0, 2.78] (81s)
+[beta=4 seed=1] ep  15 recon 87.05 KL 9.85 loss 126.43 KL/dim [0.0, 0.0, 2.99, 2.44, 0.0, 3.21, 0.0, 0.0, 0.0, 1.19] (81s)
+[beta=1 seed=2] ep  15 recon 84.62 KL 12.78 loss 97.40 KL/dim [0.0, 1.81, 0.0, 3.21, 0.0, 0.0, 0.0, 3.83, 0.0, 3.91] (81s)
+[beta=4 seed=2] ep  15 recon 91.91 KL 9.66 loss 130.54 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 1.99, 0.0, 0.0, 2.63, 3.03] (81s)
+[beta=1 seed=1] ep  16 recon 58.61 KL 15.70 loss 74.30 KL/dim [0.0, 3.27, 3.88, 0.0, 3.72, 0.0, 2.02, 0.0, 0.0, 2.79] (91s)
+[beta=4 seed=1] ep  16 recon 86.09 KL 9.90 loss 125.70 KL/dim [0.0, 0.0, 3.0, 2.45, 0.0, 3.22, 0.0, 0.0, 0.0, 1.24] (91s)
+[beta=1 seed=2] ep  16 recon 83.94 KL 12.83 loss 96.77 KL/dim [0.0, 1.86, 0.0, 3.21, 0.0, 0.0, 0.0, 3.84, 0.0, 3.92] (91s)
+[beta=4 seed=2] ep  16 recon 91.54 KL 9.67 loss 130.22 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.64, 3.04] (91s)
+[beta=1 seed=1] ep  17 recon 57.37 KL 15.78 loss 73.15 KL/dim [0.0, 3.28, 3.89, 0.0, 3.74, 0.0, 2.06, 0.0, 0.0, 2.8] (101s)
+[beta=4 seed=1] ep  17 recon 85.14 KL 9.97 loss 125.01 KL/dim [0.0, 0.0, 3.01, 2.45, 0.0, 3.22, 0.0, 0.0, 0.0, 1.29] (101s)
+[beta=1 seed=2] ep  17 recon 83.13 KL 12.90 loss 96.03 KL/dim [0.0, 1.92, 0.0, 3.2, 0.0, 0.0, 0.0, 3.85, 0.0, 3.92] (101s)
+[beta=4 seed=2] ep  17 recon 91.13 KL 9.69 loss 129.89 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.64, 3.04] (101s)
+[beta=1 seed=1] ep  18 recon 56.24 KL 15.86 loss 72.10 KL/dim [0.0, 3.3, 3.9, 0.0, 3.75, 0.0, 2.09, 0.0, 0.0, 2.82] (82s)
+[beta=4 seed=1] ep  18 recon 84.17 KL 10.02 loss 124.25 KL/dim [0.0, 0.0, 3.01, 2.45, 0.0, 3.23, 0.0, 0.0, 0.0, 1.33] (82s)
+[beta=1 seed=2] ep  18 recon 82.22 KL 12.98 loss 95.19 KL/dim [0.0, 1.98, 0.0, 3.2, 0.0, 0.0, 0.0, 3.85, 0.0, 3.93] (82s)
+[beta=4 seed=2] ep  18 recon 90.71 KL 9.71 loss 129.56 KL/dim [2.0, 0.0, 0.0, 0.0, 0.0, 2.01, 0.0, 0.0, 2.65, 3.05] (82s)
+[beta=1 seed=1] ep  19 recon 55.21 KL 15.94 loss 71.15 KL/dim [0.0, 3.31, 3.91, 0.0, 3.76, 0.0, 2.12, 0.0, 0.0, 2.83] (83s)
+[beta=4 seed=1] ep  19 recon 83.32 KL 10.07 loss 123.62 KL/dim [0.0, 0.0, 3.01, 2.45, 0.0, 3.23, 0.0, 0.0, 0.0, 1.36] (83s)
+[beta=1 seed=2] ep  19 recon 81.19 KL 13.06 loss 94.25 KL/dim [0.0, 2.05, 0.0, 3.2, 0.0, 0.0, 0.0, 3.86, 0.0, 3.93] (83s)
+[beta=4 seed=2] ep  19 recon 90.30 KL 9.73 loss 129.23 KL/dim [2.01, 0.0, 0.0, 0.0, 0.0, 2.02, 0.0, 0.0, 2.65, 3.05] (83s)
+[beta=1 seed=1] ep  20 recon 54.27 KL 16.01 loss 70.28 KL/dim [0.0, 3.32, 3.92, 0.0, 3.77, 0.0, 2.15, 0.0, 0.0, 2.84] (83s)
+[beta=4 seed=1] ep  20 recon 82.50 KL 10.13 loss 123.03 KL/dim [0.0, 0.0, 3.02, 2.45, 0.0, 3.24, 0.0, 0.0, 0.0, 1.4] (83s)
+[beta=1 seed=2] ep  20 recon 80.08 KL 13.15 loss 93.24 KL/dim [0.0, 2.13, 0.0, 3.2, 0.0, 0.0, 0.0, 3.87, 0.0, 3.94] (83s)
+[beta=4 seed=2] ep  20 recon 89.89 KL 9.75 loss 128.88 KL/dim [2.01, 0.0, 0.0, 0.0, 0.0, 2.03, 0.0, 0.0, 2.66, 3.05] (83s)
+[beta=1 seed=1] ep  21 recon 53.39 KL 16.07 loss 69.46 KL/dim [0.0, 3.33, 3.93, 0.0, 3.78, 0.0, 2.17, 0.0, 0.0, 2.85] (83s)
+[beta=4 seed=1] ep  21 recon 81.64 KL 10.19 loss 122.39 KL/dim [0.01, 0.0, 3.02, 2.46, 0.01, 3.25, 0.01, 0.01, 0.0, 1.43] (83s)
+[beta=1 seed=2] ep  21 recon 78.35 KL 13.40 loss 91.75 KL/dim [0.02, 2.17, 0.01, 3.2, 0.12, 0.01, 0.0, 3.88, 0.05, 3.95] (83s)
+[beta=4 seed=2] ep  21 recon 89.51 KL 9.77 loss 128.58 KL/dim [2.01, 0.0, 0.0, 0.0, 0.0, 2.03, 0.0, 0.0, 2.67, 3.06] (83s)
+[beta=1 seed=1] ep  22 recon 52.58 KL 16.14 loss 68.72 KL/dim [0.0, 3.34, 3.94, 0.0, 3.79, 0.0, 2.2, 0.0, 0.0, 2.86] (82s)
+[beta=4 seed=1] ep  22 recon 80.64 KL 10.26 loss 121.68 KL/dim [0.02, 0.01, 3.03, 2.46, 0.02, 3.25, 0.01, 0.02, 0.0, 1.44] (82s)
+[beta=1 seed=2] ep  22 recon 70.95 KL 14.60 loss 85.55 KL/dim [0.03, 2.0, 0.02, 3.2, 1.31, 0.01, 0.0, 3.9, 0.16, 3.96] (82s)
+[beta=4 seed=2] ep  22 recon 89.12 KL 9.78 loss 128.24 KL/dim [2.01, 0.0, 0.0, 0.0, 0.0, 2.04, 0.0, 0.0, 2.67, 3.06] (82s)
+[beta=1 seed=1] ep  23 recon 51.82 KL 16.20 loss 68.02 KL/dim [0.0, 3.35, 3.95, 0.0, 3.8, 0.0, 2.22, 0.0, 0.0, 2.87] (81s)
+[beta=4 seed=1] ep  23 recon 79.20 KL 10.39 loss 120.78 KL/dim [0.06, 0.01, 3.04, 2.46, 0.06, 3.26, 0.03, 0.06, 0.0, 1.43] (81s)
+[beta=1 seed=2] ep  23 recon 67.74 KL 14.72 loss 82.46 KL/dim [0.0, 1.97, 0.01, 3.22, 1.6, 0.0, 0.0, 3.92, 0.02, 3.98] (81s)
+[beta=4 seed=2] ep  23 recon 88.75 KL 9.80 loss 127.96 KL/dim [2.01, 0.0, 0.0, 0.0, 0.0, 2.05, 0.0, 0.0, 2.68, 3.07] (81s)
+[beta=1 seed=1] ep  24 recon 51.10 KL 16.25 loss 67.35 KL/dim [0.0, 3.36, 3.96, 0.0, 3.81, 0.0, 2.24, 0.0, 0.0, 2.88] (82s)
+[beta=4 seed=1] ep  24 recon 77.75 KL 10.52 loss 119.83 KL/dim [0.1, 0.01, 3.05, 2.46, 0.1, 3.26, 0.03, 0.09, 0.0, 1.42] (82s)
+[beta=1 seed=2] ep  24 recon 66.32 KL 14.78 loss 81.10 KL/dim [0.0, 1.97, 0.0, 3.22, 1.64, 0.0, 0.0, 3.94, 0.01, 3.99] (82s)
+[beta=4 seed=2] ep  24 recon 88.39 KL 9.82 loss 127.65 KL/dim [2.02, 0.0, 0.0, 0.0, 0.0, 2.05, 0.0, 0.0, 2.68, 3.07] (82s)
+[beta=1 seed=1] ep  25 recon 50.43 KL 16.31 loss 66.73 KL/dim [0.0, 3.37, 3.96, 0.0, 3.82, 0.0, 2.26, 0.0, 0.0, 2.89] (82s)
+[beta=4 seed=1] ep  25 recon 76.37 KL 10.64 loss 118.92 KL/dim [0.13, 0.01, 3.05, 2.47, 0.15, 3.27, 0.02, 0.13, 0.0, 1.41] (82s)
+[beta=1 seed=2] ep  25 recon 65.28 KL 14.84 loss 80.12 KL/dim [0.0, 1.99, 0.0, 3.23, 1.66, 0.0, 0.0, 3.95, 0.0, 4.0] (82s)
+[beta=4 seed=2] ep  25 recon 88.03 KL 9.84 loss 127.38 KL/dim [2.02, 0.0, 0.0, 0.0, 0.0, 2.06, 0.0, 0.0, 2.69, 3.08] (82s)
+[beta=1 seed=1] ep  26 recon 49.80 KL 16.36 loss 66.16 KL/dim [0.0, 3.38, 3.97, 0.0, 3.83, 0.0, 2.28, 0.0, 0.0, 2.9] (83s)
+[beta=4 seed=1] ep  26 recon 75.26 KL 10.72 loss 118.14 KL/dim [0.14, 0.01, 3.06, 2.47, 0.22, 3.28, 0.01, 0.13, 0.0, 1.41] (83s)
+[beta=1 seed=2] ep  26 recon 64.38 KL 14.90 loss 79.28 KL/dim [0.0, 2.0, 0.0, 3.24, 1.68, 0.0, 0.0, 3.96, 0.0, 4.01] (83s)
+[beta=4 seed=2] ep  26 recon 87.68 KL 9.86 loss 127.11 KL/dim [2.02, 0.0, 0.0, 0.0, 0.0, 2.07, 0.0, 0.0, 2.69, 3.08] (83s)
+[beta=1 seed=1] ep  27 recon 49.19 KL 16.41 loss 65.60 KL/dim [0.0, 3.38, 3.98, 0.0, 3.83, 0.0, 2.3, 0.0, 0.0, 2.91] (82s)
+[beta=4 seed=1] ep  27 recon 74.20 KL 10.80 loss 117.39 KL/dim [0.11, 0.0, 3.06, 2.47, 0.35, 3.28, 0.01, 0.1, 0.0, 1.41] (82s)
+[beta=1 seed=2] ep  27 recon 63.53 KL 14.96 loss 78.49 KL/dim [0.0, 2.02, 0.0, 3.24, 1.7, 0.0, 0.0, 3.97, 0.0, 4.02] (82s)
+[beta=4 seed=2] ep  27 recon 87.34 KL 9.87 loss 126.82 KL/dim [2.02, 0.0, 0.0, 0.0, 0.0, 2.07, 0.0, 0.0, 2.69, 3.08] (82s)
+[beta=1 seed=1] ep  28 recon 48.62 KL 16.45 loss 65.07 KL/dim [0.0, 3.39, 3.98, 0.0, 3.84, 0.0, 2.31, 0.0, 0.0, 2.92] (81s)
+[beta=4 seed=1] ep  28 recon 72.99 KL 10.87 loss 116.47 KL/dim [0.05, 0.0, 3.07, 2.48, 0.55, 3.29, 0.0, 0.04, 0.0, 1.39] (81s)
+[beta=1 seed=2] ep  28 recon 62.61 KL 15.02 loss 77.64 KL/dim [0.0, 2.04, 0.0, 3.24, 1.73, 0.0, 0.0, 3.98, 0.0, 4.02] (81s)
+[beta=4 seed=2] ep  28 recon 87.00 KL 9.89 loss 126.56 KL/dim [2.03, 0.0, 0.0, 0.0, 0.0, 2.08, 0.0, 0.0, 2.7, 3.09] (81s)
+[beta=1 seed=1] ep  29 recon 48.08 KL 16.50 loss 64.58 KL/dim [0.0, 3.4, 3.99, 0.0, 3.85, 0.0, 2.33, 0.0, 0.0, 2.93] (82s)
+[beta=4 seed=1] ep  29 recon 72.00 KL 10.92 loss 115.70 KL/dim [0.01, 0.0, 3.07, 2.48, 0.66, 3.29, 0.0, 0.01, 0.0, 1.38] (82s)
+[beta=1 seed=2] ep  29 recon 61.63 KL 15.10 loss 76.73 KL/dim [0.0, 2.06, 0.0, 3.25, 1.77, 0.0, 0.0, 3.98, 0.0, 4.03] (82s)
+[beta=4 seed=2] ep  29 recon 86.65 KL 9.91 loss 126.27 KL/dim [2.03, 0.0, 0.0, 0.0, 0.0, 2.08, 0.0, 0.0, 2.7, 3.09] (82s)
+[beta=1 seed=1] ep  30 recon 47.56 KL 16.54 loss 64.10 KL/dim [0.0, 3.4, 4.0, 0.0, 3.85, 0.0, 2.34, 0.0, 0.0, 2.94] (83s)
+[beta=4 seed=1] ep  30 recon 71.28 KL 10.97 loss 115.15 KL/dim [0.01, 0.0, 3.08, 2.49, 0.71, 3.3, 0.0, 0.01, 0.0, 1.38] (83s)
+[beta=1 seed=2] ep  30 recon 60.63 KL 15.17 loss 75.80 KL/dim [0.0, 2.08, 0.0, 3.25, 1.8, 0.0, 0.0, 3.99, 0.0, 4.03] (83s)
+[beta=4 seed=2] ep  30 recon 86.33 KL 9.92 loss 126.02 KL/dim [2.03, 0.0, 0.0, 0.0, 0.0, 2.09, 0.0, 0.0, 2.71, 3.09] (83s)
+
+beta=4 seed=0: 5 informative latents, total KL 11.06 nats, reconstruction at z=mu: 62.9 nats and 24.8 wrong pixels per image
+  latent  var    KL   | shape scale rot|shape  posX  posY  pos(x,y)
+  z8     0.002 3.28  | 0.00  0.00   0.00     0.82  0.13   0.96
+  z7     0.005 2.99  | 0.00  0.02   0.00     0.06  0.69   0.86
+  z9     0.009 2.44  | 0.07  0.30   0.00     0.18  0.18   0.53
+  z10    0.091 1.43  | 0.00  0.00   0.28     0.01  0.13   0.26
+  z3     0.184 0.92  | 0.01  0.00   0.50     0.00  0.00   0.01
+  z10: periods of the rotation response per full turn (square, oval, heart) = [4, 2, 2], amplitudes = [0.07, 1.24, 0.34]
+  z3: periods of the rotation response per full turn (square, oval, heart) = [4, 2, 2], amplitudes = [0.04, 1.54, 0.39]
+  mean over latents of the largest single-factor fraction: 0.52 (x and y separate), 0.63 (position as one factor)
+
+beta=1 seed=0: 5 informative latents, total KL 16.36 nats, reconstruction at z=mu: 47.6 nats and 17.7 wrong pixels per image
+  latent  var    KL   | shape scale rot|shape  posX  posY  pos(x,y)
+  z4     0.001 3.67  | 0.01  0.03   0.00     0.30  0.38   0.85
+  z10    0.001 3.48  | 0.01  0.01   0.05     0.11  0.18   0.77
+  z1     0.001 3.52  | 0.00  0.00   0.01     0.39  0.27   0.82
+  z6     0.002 3.38  | 0.01  0.02   0.03     0.35  0.34   0.79
+  z8     0.012 2.31  | 0.00  0.00   0.05     0.00  0.00   0.02
+  mean over latents of the largest single-factor fraction: 0.27 (x and y separate), 0.65 (position as one factor)
+saved figures/fig7ab_reproduced.png
+
+beta=4 seed=1: 5 informative latents, total KL 11.02 nats, reconstruction at z=mu: 62.1 nats and 24.8 wrong pixels per image
+  latent  var    KL   | shape scale rot|shape  posX  posY  pos(x,y)
+  z6     0.002 3.32  | 0.00  0.00   0.01     0.07  0.87   0.95
+  z3     0.003 3.09  | 0.00  0.00   0.00     0.75  0.05   0.87
+  z4     0.008 2.50  | 0.05  0.19   0.00     0.49  0.11   0.66
+  z10    0.112 1.38  | 0.00  0.00   0.29     0.00  0.00   0.01
+  z5     0.263 0.72  | 0.08  0.00   0.27     0.00  0.00   0.01
+  z10: periods of the rotation response per full turn (square, oval, heart) = [4, 2, 2], amplitudes = [0.26, 1.24, 0.34]
+  z5: periods of the rotation response per full turn (square, oval, heart) = [4, 2, 2], amplitudes = [0.03, 1.09, 0.38]
+  mean over latents of the largest single-factor fraction: 0.54 (x and y separate), 0.61 (position as one factor)
+
+beta=1 seed=1: 5 informative latents, total KL 16.54 nats, reconstruction at z=mu: 44.6 nats and 16.5 wrong pixels per image
+  latent  var    KL   | shape scale rot|shape  posX  posY  pos(x,y)
+  z3     0.001 4.00  | 0.00  0.00   0.00     0.02  0.83   0.91
+  z5     0.001 3.86  | 0.00  0.00   0.00     0.76  0.05   0.87
+  z2     0.001 3.40  | 0.03  0.07   0.01     0.59  0.12   0.78
+  z10    0.004 2.93  | 0.01  0.00   0.25     0.09  0.13   0.50
+  z7     0.011 2.34  | 0.01  0.00   0.02     0.01  0.00   0.02
+  z10: periods of the rotation response per full turn (square, oval, heart) = [4, 2, 2], amplitudes = [0.12, 1.22, 0.34]
+  mean over latents of the largest single-factor fraction: 0.49 (x and y separate), 0.61 (position as one factor)
+saved figures/fig7ab_reproduced_seed1.png
+
+beta=4 seed=2: 4 informative latents, total KL 9.93 nats, reconstruction at z=mu: 78.6 nats and 34.1 wrong pixels per image
+  latent  var    KL   | shape scale rot|shape  posX  posY  pos(x,y)
+  z10    0.006 3.10  | 0.00  0.00   0.01     0.91  0.01   0.95
+  z9     0.015 2.71  | 0.00  0.00   0.03     0.03  0.84   0.88
+  z1     0.024 2.03  | 0.17  0.77   0.00     0.02  0.01   0.03
+  z6     0.034 2.09  | 0.00  0.00   0.07     0.07  0.52   0.68
+  mean over latents of the largest single-factor fraction: 0.76 (x and y separate), 0.82 (position as one factor)
+
+beta=1 seed=2: 5 informative latents, total KL 15.26 nats, reconstruction at z=mu: 57.5 nats and 21.8 wrong pixels per image
+  latent  var    KL   | shape scale rot|shape  posX  posY  pos(x,y)
+  z10    0.000 4.05  | 0.00  0.00   0.00     0.33  0.58   0.92
+  z8     0.000 4.01  | 0.00  0.00   0.00     0.61  0.29   0.91
+  z4     0.002 3.27  | 0.05  0.19   0.00     0.30  0.38   0.70
+  z2     0.019 2.11  | 0.00  0.00   0.79     0.01  0.01   0.01
+  z5     0.034 1.81  | 0.01  0.00   0.82     0.00  0.00   0.01
+  z2: periods of the rotation response per full turn (square, oval, heart) = [4, 2, 2], amplitudes = [0.22, 2.1, 0.63]
+  z5: periods of the rotation response per full turn (square, oval, heart) = [4, 2, 2], amplitudes = [0.19, 2.31, 0.74]
+  mean over latents of the largest single-factor fraction: 0.64 (x and y separate), 0.83 (position as one factor)
+saved figures/fig7ab_reproduced_seed2.png

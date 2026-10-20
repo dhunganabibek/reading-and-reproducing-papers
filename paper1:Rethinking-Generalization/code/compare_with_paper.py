@@ -28,7 +28,7 @@ print(f"{'network':10s} {'p':>4s} | {'paper':>6s} {'mine':>6s} | {'paper':>6s} {
 for arch, rows in ours.items():
     for r in rows:
         i = round(r["p"] * 10)
-        print(f"{arch:10s} {r['p']:4.1f} | {paper['b'][arch][i]:6.2f} {r['time_ratio']:6.2f} | "
+        print(f"{arch:10s} {r['p']:4.1f} | {paper['b'][arch][i]:6.2f} {fmt(r['time_ratio'], '6.2f'):>6s} | "
               f"{paper['c'][arch][i]:6.3f} {r['test_err']:6.3f} "
               f"{r['test_err_noisy_expected']:20.3f} / {fmt(r['test_err_noisy_measured'], '.3f')}")
 

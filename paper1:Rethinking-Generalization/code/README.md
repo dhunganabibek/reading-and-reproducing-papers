@@ -1,20 +1,25 @@
 # Figure 1 of Zhang et al. (2017), "Understanding deep learning requires rethinking generalization"
 
+[Shared LLM conversation](https://chatgpt.com/share/e/6ad70878-aa80-83e9-a81a-71775854baf0)
+
 PyTorch reproduction of Figure 1 on CIFAR-10: (a) learning curves of the small Inception network on the
 randomization tests, (b) convergence slowdown and (c) test error against label corruption, for the small
 Inception, the small AlexNet and an MLP with one hidden layer of 512 units.
 
-```
+Run these commands from this `code/` directory in an activated Python environment:
+
+```bash
 pip install -r requirements.txt
-bash run_all.sh                         # all runs, one after the other (about 3.5 h on an Apple M4 Pro)
-python3 plot_fig1.py                    # redraw figures/fig1_reproduced.png from results/
-python3 compare_with_paper.py           # the paper's plotted values next to my runs
-jupyter notebook reproduce_fig1.ipynb   # the figure and every number in the report, no retraining needed
+jupyter notebook reproduce_fig1.ipynb
 ```
+
+The notebook redraws the figure and reads saved measurements without data or weights.
+To train the runs, use `bash run_all.sh`. To redraw just the figure, use `python3 plot_fig1.py`;
+`python3 compare_with_paper.py` prints the comparison with the paper.
 
 CIFAR-10 is downloaded with torchvision on first use, or set `CIFAR10_NPZ=/path/to/cifar10.npz`.
 
-| file | |
+| File | Purpose |
 |---|---|
 | `data.py` | loading, preprocessing (center crop to 28x28, per-image whitening) and the randomization tests |
 | `models.py` | small Inception, small AlexNet, MLP; `python3 models.py` checks the parameter counts against Table 1 |
@@ -30,3 +35,7 @@ all 2352 values of an image permuted (`random_values`, the one in the figure) an
 values kept together (`random_pixels`, the dashed curve).
 
 Run one training job at a time; several jobs at once on a laptop GPU crashed the machine.
+
+The default notebook needs neither data nor weights. To re-extract the original paper’s plotted
+values, install Poppler (`pdftocairo`) and pass the paper PDF to `extract_paper_fig1.py`; the extracted
+values are already included and are used only for comparison.

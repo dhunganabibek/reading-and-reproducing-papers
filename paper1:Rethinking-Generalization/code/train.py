@@ -44,6 +44,22 @@ def corrupt_test_labels(y, p, seed):
     return torch.where(replace, torch.randint(0, 10, (len(y),), generator=g), y)
 
 
+def rng_state(device):
+    state = {"rng": torch.get_rng_state()}
+    if device.type in ("cuda", "mps"):
+        state["device_rng"] = getattr(torch, device.type).get_rng_state(device)
+    return state
+
+
+def restore_rng(checkpoint, device):
+    if "rng" in checkpoint:
+        torch.set_rng_state(checkpoint["rng"].cpu())
+    if device.type in ("cuda", "mps") and "device_rng" in checkpoint:
+        getattr(torch, device.type).set_rng_state(checkpoint["device_rng"].cpu(), device)
+    elif "rng" not in checkpoint or device.type in ("cuda", "mps"):
+        print("Older checkpoint has incomplete RNG state; resume is not an exact continuation.", flush=True)
+
+
 def save(obj, path):
     # write to a temp file first, so a run killed mid-write cannot leave a broken file
     torch.save(obj, path + ".tmp")
@@ -62,6 +78,11 @@ def main():
     ap.add_argument("--out", default="results")
     ap.add_argument("--tag", default=None)
     args = ap.parse_args()
+    if args.epochs < 1:
+        ap.error("--epochs must be positive")
+
+    if not 0 <= args.p <= 1:
+        ap.error("--p must be between 0 and 1")
 
     tag = args.tag
     if tag is None:
@@ -95,6 +116,8 @@ def main():
 
     n = len(x_train)
     steps_per_epoch = n // BATCH_SIZE
+    if steps_per_epoch == 0:
+        raise ValueError(f"Training needs at least {BATCH_SIZE} images.")
     log = {"args": vars(args), "tag": tag, "params": count_params(model), "lr0": lr0,
            "frac_labels_changed": frac_changed, "steps_per_epoch": steps_per_epoch,
            "step_loss": [], "epoch": [], "train_acc": [], "train_loss": [],
@@ -107,10 +130,12 @@ def main():
         model.load_state_dict(ck["model"])
         opt.load_state_dict(ck["opt"])
         log, step, start_epoch = ck["log"], ck["step"], ck["epoch"]
-        torch.set_rng_state(ck["rng"].cpu())
+        restore_rng(ck, device)
         print(f"[{tag}] resumed from epoch {start_epoch}", flush=True)
 
     for epoch in range(start_epoch, args.epochs):
+        if log["train_acc"] and log["train_acc"][-1] >= 1.0:
+            break
         t0 = time.time()
         lr = lr0 * LR_DECAY ** epoch
         for group in opt.param_groups:
@@ -148,7 +173,7 @@ def main():
         with open(log_path, "w") as f:
             json.dump(log, f)
         save({"model": model.state_dict(), "opt": opt.state_dict(), "log": log, "step": step,
-              "epoch": epoch + 1, "rng": torch.get_rng_state()}, ckpt_path)
+              "epoch": epoch + 1, **rng_state(device)}, ckpt_path)
         if train_acc >= 1.0:
             break
 

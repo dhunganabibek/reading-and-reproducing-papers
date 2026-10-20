@@ -93,7 +93,6 @@ ARCHS = {
     "inception": SmallInception,
     "alexnet": SmallAlexNet,
     "mlp1": lambda: MLP(hidden_layers=1),
-    "mlp3": lambda: MLP(hidden_layers=3),
 }
 
 
@@ -116,7 +115,7 @@ def count_params(model):
 
 
 if __name__ == "__main__":
-    table1 = {"inception": 1_649_402, "alexnet": 1_387_786, "mlp1": 1_209_866, "mlp3": 1_735_178}
+    table1 = {"inception": 1_649_402, "alexnet": 1_387_786, "mlp1": 1_209_866}
     for arch, ref in table1.items():
         n = count_params(build(arch))
         print(f"{arch:10s} {n:>10,}   paper {ref:>10,}   {'ok' if n == ref else 'MISMATCH'}")
